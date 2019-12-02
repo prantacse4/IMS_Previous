@@ -1,0 +1,22 @@
+tr:hover{
+	background-color: yellow;
+}
+
+/*add button with anchor tag*/
+
+.abutton{
+	color: white;
+	background-color: #2ecc71;
+	float: right; 
+	width: 15%;
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 16px;
+	font-family: verdana;
+
+}
+.abutton:hover{
+	color: white;
+	background: green;
+}
