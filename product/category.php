@@ -1,15 +1,11 @@
-
-<?php  
+<?php
 	include '../inc/header.php';
 	include '../inc/sidebar.php';
-
   include '../config/config.php';
   include '../config/Database.php';
-
   $db= new Database();
   $query="SELECT * FROM category";
   $read=$db->select($query);
-
 ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -56,27 +52,27 @@
                 </tr>
                 </thead>
                 <tbody>
-        <?php 
-          if ($read) {
-            while ($row=$read->fetch_assoc()) {
-       ?>
+<?php
+          if($read) {
+            while($row=$read->fetch_assoc()) {
+?>
 
                 <tr>
-                  <td><?php echo $row['name']; ?></td>
-                  <td><?php echo $row['description']; ?></td>
-                  <td><?php echo $row['status']; ?></td>
+                  <td><?php echo $row['name'];?></td>
+                  <td><?php echo $row['description'];?></td>
+                  <td><?php echo $row['status'];?></td>
                   <td>
-                    <a href="cat_view.php" style="color: white;"> 
-                      <button class="btn btn-info">
-                        <span class="fa fa-check"></span>
+                    <a href="cat_view.php?id=<?php echo $row['id']; ?>" style="color: white;"> 
+                      <button  class="btn btn-info">
+                        <span class="far fa-eye"></span>
                       </button> 
                   </a>
-                  <a href="cat_edit.php" style="color: white;"> 
+                  <a href="cat_edit.php?id=<?php echo $row['id']; ?>" style="color: white;"> 
                     <button class="btn btn-success">
                       <span class="fa fa-edit"></span>
                     </button>
                   </a>
-                  <a href="cat_delete.php" style="color: white;"> 
+                  <a href="cat_delete.php?id=<?php echo $row['id']; ?>" style="color: white;"> 
                     <button class="btn btn-danger">
                       <span class="fa fa-trash-alt"></span>
                     </button>
@@ -84,7 +80,7 @@
                    
                   </td>
                 </tr>
-        <?php } } ?>
+<?php } } ?>
               </tbody>
               </table>
             </div>
@@ -93,6 +89,7 @@
         </div>
       </section>
 
-<?php  
+
+<?php
 	include '../inc/footer.php';
 ?>

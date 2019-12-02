@@ -1,6 +1,6 @@
 <?php
-include "inc/header.php";
-include "inc/sidebar.php";
+include "../inc/header.php";
+include "../inc/sidebar.php";
 ?>
 
 
@@ -29,6 +29,7 @@ include "inc/sidebar.php";
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+        <H1>WELCOME PAGE</H1>
 
         <!-- main body start from here -->
        
@@ -43,5 +44,5 @@ include "inc/sidebar.php";
   <!-- /.content-wrapper -->
   
   <?php 
-  include "inc/footer.php";
+  include "../inc/footer.php";
   ?>

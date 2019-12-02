@@ -1,4 +1,5 @@
-<?php 
+
+<?php
 
 class Database
 {
@@ -45,7 +46,7 @@ class Database
 	{
 		$insert_row=$this->link->query($query) or die($this->link->error.__LINE__);
 		if ($insert_row) {
-			header("Location:category.php?msg=".urlencode('Data inserted Successfully'));
+			header("Location:category.php?msg=".urlencode('Data Deleted Successfully'));
 			exit();
 		}
 		else
@@ -55,6 +56,37 @@ class Database
 	}
 //next function
 
-}
 
+
+	//Update
+	public function update($query)
+	{
+		$update_row=$this->link->query($query) or die($this->link->error.__LINE__);
+		if ($update_row) {
+			header("Location:category.php?msg=".urlencode('Data Updated Successfully'));
+			exit();
+		}
+		else
+		{
+			die("Error: (".$this->link->errono.")" .$this->link->error);
+		}
+	}
+
+
+	//Delete
+
+	public function delete($query)
+	{
+		$delete_row=$this->link->query($query) or die($this->link->error.__LINE__);
+		if ($delete_row) {
+			header("Location:category.php?msg=".urlencode('Data inserted Successfully'));
+			exit();
+		}
+		else
+		{
+			die("Error: (".$this->link->errono.")" .$this->link->error);
+		}
+	}
+
+}
 ?>
