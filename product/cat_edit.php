@@ -18,6 +18,12 @@ if(isset($_POST['update']))
     status = '$status'
     WHERE cat_id =$id";
   $update = $db->update($query);
+  if($update){
+       echo "<script>window.location.href='category.php'</script>"; 
+     }
+     else{
+      echo '$error';
+     }
 }
 
 $query = "SELECT * FROM category WHERE cat_id = $id";

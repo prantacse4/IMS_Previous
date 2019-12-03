@@ -9,6 +9,8 @@ if(isset($_POST['submit']))
   $cname=mysqli_real_escape_string($db->link, $_POST['cname']);
   $description=mysqli_real_escape_string($db->link, $_POST['description']);
   $status=mysqli_real_escape_string($db->link, $_POST['status']);
+
+
   if ($cname=='' || $description=='' || $status=='') {
     $error="Field must not be empty";
   }
@@ -16,9 +18,16 @@ if(isset($_POST['submit']))
   {
     $query="INSERT INTO category(name, description, status) VALUES('$cname','$description', '$status')";
     $insert=$db->insert($query);
+    if($insert){
+       echo "<script>window.location.href='category.php'</script>"; 
+     }
+     else{
+      echo '$error';
+     }
   }
 }
 ?>
+
 
 <?php 
 include "../inc/header2.php";

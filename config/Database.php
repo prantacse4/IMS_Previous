@@ -42,18 +42,21 @@ class Database
 
 //insert data fucntion
 
+
 	public function insert($query)
 	{
-		$insert_row=$this->link->query($query) or die($this->link->error.__LINE__);
-		if ($insert_row) {
-			header("Location:category.php?msg=".urlencode('Data Deleted Successfully'));
-			exit();
-		}
-		else
-		{
-			die("Error: (".$this->link->errono.")" .$this->link->error);
-		}
+		$insert_row = $this->link->query($query) or 
+       die($this->link->error.__LINE__);
+      if ($insert_row) {
+         return $insert_row;
+       } else {
+           return false;
+     }
 	}
+
+
+
+
 //next function
 
 
@@ -61,15 +64,13 @@ class Database
 	//Update
 	public function update($query)
 	{
-		$update_row=$this->link->query($query) or die($this->link->error.__LINE__);
-		if ($update_row) {
-			header("Location:category.php?msg=".urlencode('Data Updated Successfully'));
-			exit();
-		}
-		else
-		{
-			die("Error: (".$this->link->errono.")" .$this->link->error);
-		}
+		$insert_row = $this->link->query($query) or 
+       die($this->link->error.__LINE__);
+      if ($insert_row) {
+         return $insert_row;
+       } else {
+           return false;
+     }
 	}
 
 
@@ -77,15 +78,13 @@ class Database
 
 	public function delete($query)
 	{
-		$delete_row=$this->link->query($query) or die($this->link->error.__LINE__);
-		if ($delete_row) {
-			header("Location:category.php?msg=".urlencode('Data inserted Successfully'));
-			exit();
-		}
-		else
-		{
-			die("Error: (".$this->link->errono.")" .$this->link->error);
-		}
+		$insert_row = $this->link->query($query) or 
+       die($this->link->error.__LINE__);
+      if ($insert_row) {
+         return $insert_row;
+       } else {
+           return false;
+     }
 	}
 
 }

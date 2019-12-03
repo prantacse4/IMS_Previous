@@ -53,8 +53,8 @@
                 </thead>
                 <tbody>
 <?php
-          if($read) {
-            while($row=$read->fetch_assoc()) {
+     if($read) {
+    while($row=$read->fetch_assoc()) {
 ?>
 
                 <tr>
