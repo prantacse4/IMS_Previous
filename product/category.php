@@ -62,17 +62,17 @@
                   <td><?php echo $row['description'];?></td>
                   <td><?php echo $row['status'];?></td>
                   <td>
-                    <a href="cat_view.php?id=<?php echo $row['id']; ?>" style="color: white;"> 
+                    <a href="cat_view.php?id=<?php echo $row['cat_id']; ?>" style="color: white;"> 
                       <button  class="btn btn-info">
-                        <span class="far fa-eye"></span>
+                        <span class="fa fa-eye"></span>
                       </button> 
                   </a>
-                  <a href="cat_edit.php?id=<?php echo $row['id']; ?>" style="color: white;"> 
+                  <a href="cat_edit.php?id=<?php echo $row['cat_id']; ?>" style="color: white;"> 
                     <button class="btn btn-success">
                       <span class="fa fa-edit"></span>
                     </button>
                   </a>
-                  <a href="cat_delete.php?id=<?php echo $row['id']; ?>" style="color: white;"> 
+                  <a href="cat_delete.php?id=<?php echo $row['cat_id']; ?>" style="color: white;"> 
                     <button class="btn btn-danger">
                       <span class="fa fa-trash-alt"></span>
                     </button>

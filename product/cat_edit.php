@@ -16,11 +16,11 @@ if(isset($_POST['update']))
     name='$name',
     description = '$description',
     status = '$status'
-    WHERE id =$id";
+    WHERE cat_id =$id";
   $update = $db->update($query);
 }
 
-$query = "SELECT * FROM category WHERE id = $id";
+$query = "SELECT * FROM category WHERE cat_id = $id";
 $row = $db->select($query)->fetch_assoc();
 ?>
 

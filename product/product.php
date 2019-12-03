@@ -15,12 +15,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Product Category</h1>
+            <h1 class="m-0 text-dark">Products Available</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Category</li>
+              <li class="breadcrumb-item active">Product</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -39,8 +39,8 @@
 
 	     <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Product Category Information</h3>
-                <a href="cat_create.php" class="abutton">Add Category</a>
+              <h3 class="card-title">Product Information</h3>
+                <a href="pro_create.php" class="abutton">Add Product</a>
             </div>
             <!-- /.card-header -->
             <div class="card-body" >
@@ -49,18 +49,10 @@
                 <thead style="background-color: #1abc9c;">
                 <tr>
                   <th>Product Name</th>
-                  <th>Description</th>
                   <th>Product Code</th>
-                  <th>Quatity Type</th>
                   <th>Quantity</th>
-                  <th>Total Price</th>
                   <th>Avarage Price</th>
                   <th>MRP</th>
-                  <th>Wholesale Price</th>
-                  <th>MFG Date</th>
-                  <th>Expire Date</th>
-                  <th>Image</th>
-                  <th>Location</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -74,14 +66,6 @@
                   <td>aa<?php // echo $row['name'];?></td>
                   <td>aa<?php // echo $row['description'];?></td>
                   <td>aa<?php // echo $row['status'];?></td>
-                  <td>sghjka</td>
-                  <td>sghjka</td>
-                  <td>sghjka</td>
-                  <td>sghjka</td>
-                  <td>sghjka</td>
-                  <td>sghjka</td>
-                  <td>sghjka</td>
-                  <td>sghjka</td>
                   <td>sghjka</td>
                   <td>sghjka</td>
                   <td>
