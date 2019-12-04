@@ -1,7 +1,7 @@
 
 <?php  
-	include '../inc/header.php';
-	include '../inc/sidebar.php';
+  include '../inc/header.php';
+  include '../inc/sidebar.php';
 
   include '../config/config.php';
   include '../config/Database.php';
@@ -39,7 +39,7 @@
         <!-- main body start from here -->
 
 
-	     <div class="card">
+       <div class="card">
             <div class="card-header">
               <h3 class="card-title">Company Information</h3>
                 <a href="company_create.php" class="abutton">Add Company</a>
@@ -66,11 +66,94 @@
                   <td><?php echo $row['contact']; ?></td>
                   <td><?php echo $row['address']; ?></td>
                   <td>
-                    <a href="company_view.php?id=<?php echo $row['c_id']; ?>" style="color: white;"> 
-                      <button class="btn btn-info">
+
+                    <button class="btn btn-info" data-toggle="modal" data-target="#myModal-<?php echo $row['c_id']; ?>">
                         <span class="far fa-eye"></span>
                       </button> 
-                  </a>
+
+                       <div class="modal fade" id="myModal-<?php echo $row['c_id']; ?>" role="dialog">
+                       <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+                  <div class="modal-content">
+                   <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 
+                   </div>
+                    <div class="modal-body">
+                       <section class="content">
+      <div class="container-fluid">
+        <!-- main body start from here -->
+
+        <!-- Horizontal Form -->
+            <div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">Company Information</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form class="form-horizontal" action="supplier.php" method="post">
+                <div class="card-body">
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Company Name</label>
+                    <div class="col-sm-6">
+                      <p style="padding-top :8px;">: <?php echo $row['name']; ?></p>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Contact No.</label>
+                    <div class="col-sm-6">
+                      <p style="padding-top :8px;">: <?php echo $row['contact']; ?></p>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Address</label>
+                    <div class="col-sm-6">
+                      <p style="padding-top :8px;">: <?php echo $row['address']; ?></p>
+                    </div>
+                  </div>
+
+                  
+                  <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label"></label>
+                    
+                
+                  </div>
+                </div>
+                <!-- /.card-body -->
+              </form>
+            </div>
+            <!-- /.card -->
+    </div>
+  </section>
+         </div>
+
+                     <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               </div>
+
+               </div>
+                </div> 
+
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                   <a href="company_edit.php?id=<?php echo $row['c_id']; ?>" style="color: white;"> 
                     <button class="btn btn-success">
@@ -95,5 +178,5 @@
       </section>
 
 <?php  
-	include '../inc/footer.php';
+  include '../inc/footer.php';
 ?>
