@@ -1,9 +1,10 @@
 <?php
   //include '../inc/header.php';
-  include '../inc/sidebar.php';
+ // include '../inc/sidebar.php';
   include '../config/config.php';
   include '../config/Database.php';
   $db= new Database();
+  
 if(isset($_POST['submit2']))
 {
   $p_name=mysqli_real_escape_string($db->link, $_POST['p_name']);
@@ -21,13 +22,38 @@ if(isset($_POST['submit2']))
   $expire_date= $_POST['expire_date'];
   $location=mysqli_real_escape_string($db->link, $_POST['location']);
 
+
+  $upload_dir = 'uploads/';
   $imgName = $_FILES['image']['name'];
+  $imgTmp = $_FILES['image']['tmp_name'];
+  $imgSize = $_FILES['image']['size'];
+
+ //$imgExt = explode(".", strtolower($_FILES['image']['name']));
+  $imgExt = strtolower(pathinfo($imgName, PATHINFO_EXTENSION));
+  $allowExt  = array('jpeg', 'jpg', 'png', 'gif');
+  $userPic = time().'_'.rand(1000,9999).'.'.$imgExt;
+
+  if(in_array($imgExt, $allowExt)){
+
+        if($imgSize < 8000000){
+          move_uploaded_file($imgTmp ,$upload_dir.$userPic);
+        }else{
+          $errorMsg = 'Image too large';
+        }
+      }else{
+        $errorMsg = 'Please select a valid image';
+      }
+
+ 
+  //move_uploaded_file($imgTmp ,$upload_dir.$userPic);
+
+ /* $imgName = $_FILES['image']['name'];
     $imgTmp = $_FILES['image']['tmp_name'];
     $imgSize = $_FILES['image']['size'];
     $imgExt = strtolower(pathinfo($imgName, PATHINFO_EXTENSION));
       $allowExt  = array('jpeg', 'jpg', 'png', 'gif');
       $userPic = time().'_'.rand(1000,9999).'.'.$imgExt;
-      move_uploaded_file($imgTmp ,$upload_dir.$userPic);
+      move_uploaded_file($imgTmp ,$upload_dir.$userPic);*/
 
 
   if ($quantity_type=='' || $cat_id=='' || $c_id=='') {
@@ -35,7 +61,9 @@ if(isset($_POST['submit2']))
   }
   else
   {
-    $query="INSERT INTO product(p_name, description, product_code,quantity_type,cat_id,c_id,quantity,total_price,avg_price,mrp,wholesale_price,mfg,expire_date,image,location) VALUES('$p_name', '$description', '$product_code','$quantity_type','$cat_id','$c_id','$quantity','$total_price','$avg_price','$mrp','$wholesale_price','$mfg','$expire_date','$userPic','$location')";
+    $query="INSERT INTO product(cat_id, c_id, p_name,description,product_code,quantity_type,quantity,total_price,avg_price,mrp,wholesale_price,mfg,expire_date,image,location) 
+    VALUES
+    ('$cat_id', '$c_id', '$p_name','$description','$product_code','$quantity_type','$quantity','$total_price','$avg_price','$mrp','$wholesale_price','$mfg','$expire_date','$userPic','$location')";
     $insert=$db->insert($query);
     if($insert){
        echo "<script>window.location.href='product.php'</script>"; 
@@ -44,7 +72,7 @@ if(isset($_POST['submit2']))
       echo '$error';
      }
   }
-  echo "<script>window.location.href='product.php'</script>"; 
+ // echo "<script>window.location.href='product.php'</script>"; 
 }
 ?>
 
@@ -101,7 +129,7 @@ include "../inc/header2.php";include '../inc/sidebar.php';
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal" action="cat_create.php" method="post">
+              <form class="form-horizontal" action="" method="post">
                 <div class="card-body">
 
                   <div class="form-group row">
@@ -140,7 +168,7 @@ include "../inc/header2.php";include '../inc/sidebar.php';
      if($row2) {
     while($row22=$row2->fetch_assoc()) {
 ?>
-                      <option value="<?php echo $row22['id']; ?>"><?php echo $row22['name']; ?></option>
+                      <option value="<?php echo $row22['cat_id']; ?>"><?php echo $row22['name']; ?></option>
                       <?php } } ?>
                       
                       </select>
@@ -162,7 +190,7 @@ include "../inc/header2.php";include '../inc/sidebar.php';
      if($row3) {
     while($row32=$row3->fetch_assoc()) {
 ?>
-                      <option value="<?php echo $row32['name']; ?>"><?php echo $row32['name']; ?></option>
+                      <option value="<?php echo $row32['c_id']; ?>"><?php echo $row32['name']; ?></option>
                       <?php } } ?>
                       </select>
                 </div>
@@ -187,20 +215,7 @@ include "../inc/header2.php";include '../inc/sidebar.php';
                     </div>
                   </div>
 
-                  <script type="text/javascript">function selectValidation() {
-            var selectIsValid = true;
-            $('.selectmenu').each(function(){
-                if($(this).val()==='') {
-                    selectIsValid = false;
-                } else {
-                    selectIsValid = true;
-                }
-            });
-            console.log(selectIsValid);
-            if(selectIsValid) {
-            }
-            return false;
-        }</script>
+                 
 
 
 
