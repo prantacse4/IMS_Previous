@@ -29,7 +29,7 @@ include "../inc/sidebar.php";
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <H1>WELCOME PAGE</H1>
+        <H1>WELCOME ADMIN</H1>
 
         <!-- main body start from here -->
        
