@@ -1,0 +1,45 @@
+
+.buttonlg{
+    padding: .2rem .6rem;
+}
+.lcbody{
+
+        background: #fff;
+    border-top: 0;
+    
+    background: #67b26f;
+    background: -webkit-linear-gradient(to right, #67b26f, #4ca2cd);
+    background: linear-gradient(to right, #cbeecf, #b3e6ff);
+    /* background: #eaeaea; */
+    color: #666;
+    padding: 20px;
+    box-shadow: 1px 4px 12px;
+
+}
+.radius{
+    border-radius: 8px;
+}
+.imgradius{
+   border-radius: 45px;
+height: 78px;
+width: 78px;
+}
+.modal-content {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    pointer-events: auto;
+    background-color: 
+#ffffff7d;
+background-clip: padding-box;
+border: 1px solid
+    rgba(0,0,0,.2);
+    border-radius: .3rem;
+    box-shadow: 0 .25rem .5rem rgba(0,0,0,.5);
+    outline: 0;
+}
+.reg{
+    width: 100%;
+}
