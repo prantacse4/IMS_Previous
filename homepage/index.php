@@ -1,9 +1,21 @@
 <?php
-include "../inc/header.php";
-include "../inc/sidebar.php";
+session_start();
+include "../inc/header2.php";
+if (!isset($_SESSION['email'])) {
+  echo "<script>window.location.href='../login_register/login_register.php'</script>";
+}
+$e=0;
+$f="";
+if (isset( $_SESSION['email'])) {
+  $email =  $_SESSION['email'];
+  $f = $email;
+  $f='<div class="text-center"><a class="btn btn-danger" href="logout.php?logout="1" ">Logout</a></div> ';
+  $e=1;
+}
+
 ?>
 
-
+ 
 
 
   <!-- Content Wrapper. Contains page content -->
@@ -30,6 +42,12 @@ include "../inc/sidebar.php";
     <section class="content">
       <div class="container-fluid">
         <H1>WELCOME ADMIN</H1>
+        <div class="text-center">
+          <h2><?php if ($e==1) { echo $email; } ?></h2>
+        </div>
+        <?php if ($e==1) {
+      echo $f;
+    } ?>
 
         <!-- main body start from here -->
        

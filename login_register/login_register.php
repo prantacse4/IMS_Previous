@@ -1,9 +1,42 @@
+<?php 
+session_start();
+include "../config/library.php";
+$db= new Database();
+
+if (isset($_SESSION['email'])) {
+  echo "<script>window.location.href='../homepage/index.php'</script>";
+}
+
+$error = "";
+$e=0;
+if (isset($_POST['login'])) {
+  $email = mysqli_real_escape_string($db->link, $_POST['email']);
+  $password = mysqli_real_escape_string($db->link, $_POST['password']);
+
+    $query = "SELECT * FROM adminlogin WHERE email='$email' AND password='$password'";
+    $result = mysqli_query($db->link,$query);
+    $user_data = mysqli_fetch_array($result);
+    $count_row = $result->num_rows;
+
+    if ($count_row == 1) {
+      $_SESSION['email'] = $email;
+      $_SESSION['success'] = "You are now logged in.";
+       echo "<script>window.location.href='../homepage/index.php'</script>";
+    }else {
+      $error="Email/Password is wrong!.";
+    $e=1;
+    $f='<div class="warning danger danl text-center"> <Strong>Danger!</Strong> Email/Password is wrong!. </div>';
+    }
+}
+ ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Registration Page</title>
+  <title>IMS</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -27,14 +60,20 @@
   <div class="card radius">
     <div class="card-body login-card-body lcbody radius">
       <div class="login-logo">
-    <a href="../../index2.html"><b>IMS</b> SYSTEM</a><br>
+    <a href=""><b>IMS</b> SYSTEM</a><br>
     <img class="text-center imgradius" src="images/avatar.gif" >
   </div>
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="../../index3.html" method="post">
+      <?php if ($e==1) {
+      echo $f;
+    } ?>
+
+
+
+      <form action="" method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" name="email" class="form-control" placeholder="Email" Required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -42,7 +81,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" name="password" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -60,11 +99,11 @@
           </div>
           <!-- /.col --><br>
           <div class="text-center">
-            <button type="submit" class="btn btn-lg btn-primary buttonlg">Sign In</button>
+            <button type="submit" name="login" class="btn btn-lg btn-primary buttonlg">Sign In</button>
           </div>
           <!-- /.col -->
        
-      </form>
+      <!-- </form> -->
       <br>
 
 
@@ -106,7 +145,7 @@
   </div>
       <p class="login-box-msg">Register a new membership</p>
 
-      <form action="../../index.html" method="post">
+<!--       <form action="../../index.html" method="post"> -->
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Full name">
           <div class="input-group-append">
@@ -144,7 +183,7 @@
           <!-- /.col -->
           <br>
           <div class="text-center">
-            <button type="submit" class="btn btn-lg btn-primary buttonlg">Request</button>
+            <button name="request" type="submit" class="btn btn-lg btn-primary buttonlg">Request</button>
           </div>
           <!-- /.col -->
        
@@ -152,7 +191,7 @@
       <br>
 
 
-      <a href="login.html" class="text-center" data-dismiss="modal">I already have a membership</a>
+      <a  class="text-center" data-dismiss="modal">I already have a membership</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
