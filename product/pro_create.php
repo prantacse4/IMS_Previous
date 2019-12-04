@@ -1,6 +1,6 @@
 <?php
-//  include '../inc/header.php';
-  //include '../inc/sidebar.php';
+  //include '../inc/header.php';
+  include '../inc/sidebar.php';
   include '../config/config.php';
   include '../config/Database.php';
   $db= new Database();
@@ -63,7 +63,7 @@ $query2="SELECT * FROM category";
 
 
 <?php 
-include "../inc/header2.php";
+include "../inc/header2.php";include '../inc/sidebar.php';
  ?>
 
 

@@ -1,11 +1,15 @@
-<?php
-	include '../inc/header2.php';
+
+<?php  
+	include '../inc/header.php';
 	include '../inc/sidebar.php';
-//  include '../config/config.php';
- // include '../config/Database.php';
- // $db= new Database();
- // $query="SELECT * FROM category";
- // $read=$db->select($query);
+
+  include '../config/config.php';
+  include '../config/Database.php';
+
+  $db= new Database();
+  $query="SELECT * FROM company";
+  $read=$db->select($query);
+
 ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -15,12 +19,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Products Available</h1>
+            <h1 class="m-0 text-dark">Company</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Product</li>
+              <li class="breadcrumb-item active">Company</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -35,51 +39,45 @@
         <!-- main body start from here -->
 
 
-
-
 	     <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Product Information</h3>
-                <a href="pro_create.php" class="abutton">Add Product</a>
+              <h3 class="card-title">Company Information</h3>
+                <a href="company_create.php" class="abutton">Add Company</a>
             </div>
             <!-- /.card-header -->
-            <div class="card-body" >
-              <div style="overflow-x:auto;">
-              <table  id="example1" class="table table-bordered table-striped forproducttable" >
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
                 <thead style="background-color: #1abc9c;">
                 <tr>
-                  <th>Product Name</th>
-                  <th>Product Code</th>
-                  <th>Quantity</th>
-                  <th>Avarage Price</th>
-                  <th>MRP</th>
+                  <th>Company Name</th>
+                  <th>Contact No</th>
+                  <th>Address</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-<?php
-      //    if($read) {
-        //    while($row=$read->fetch_assoc()) {
-?>
+        <?php 
+          if ($read) {
+            while ($row=$read->fetch_assoc()) {
+       ?>
 
                 <tr>
-                  <td>aa<?php // echo $row['name'];?></td>
-                  <td>aa<?php // echo $row['description'];?></td>
-                  <td>aa<?php // echo $row['status'];?></td>
-                  <td>sghjka</td>
-                  <td>sghjka</td>
+                  <td><?php echo $row['name']; ?></td>
+                  <td><?php echo $row['contact']; ?></td>
+                  <td><?php echo $row['address']; ?></td>
                   <td>
-                    <a href="cat_view.php?id=<?php // echo $row['id']; ?>" style="color: white;"> 
-                      <button  class="btn btn-info">
+                    <a href="company_view.php?id=<?php echo $row['c_id']; ?>" style="color: white;"> 
+                      <button class="btn btn-info">
                         <span class="far fa-eye"></span>
                       </button> 
                   </a>
-                  <a href="cat_edit.php?id=<?php // echo $row['id']; ?>" style="color: white;"> 
+
+                  <a href="company_edit.php?id=<?php echo $row['c_id']; ?>" style="color: white;"> 
                     <button class="btn btn-success">
                       <span class="fa fa-edit"></span>
                     </button>
                   </a>
-                  <a href="cat_delete.php?id=<?php // echo $row['id']; ?>" style="color: white;"> 
+                  <a href="company_delete.php?id=<?php echo $row['c_id']; ?>" style="color: white;"> 
                     <button class="btn btn-danger">
                       <span class="fa fa-trash-alt"></span>
                     </button>
@@ -87,17 +85,15 @@
                    
                   </td>
                 </tr>
-<?php // } } ?>
+        <?php } } ?>
               </tbody>
               </table>
-              </div>
             </div>
             <!-- /.card-body -->
           </div>
         </div>
       </section>
 
-
-<?php
+<?php  
 	include '../inc/footer.php';
 ?>

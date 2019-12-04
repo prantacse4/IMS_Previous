@@ -62,7 +62,19 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>Product List</p>
                 </a>
-              </li>            
+              </li>  
+              <li class="nav-item">
+                <a href="../product/company.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Company</p>
+                </a>
+              </li>   
+              <li class="nav-item">
+                <a href="../product/supplier.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Supplier</p>
+                </a>
+              </li>          
             </ul>
           </li>
           <li class="nav-item has-treeview">
