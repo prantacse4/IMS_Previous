@@ -1,11 +1,11 @@
 <?php
 	include '../inc/header2.php';
 	include '../inc/sidebar.php';
-//  include '../config/config.php';
- // include '../config/Database.php';
- // $db= new Database();
- // $query="SELECT * FROM category";
- // $read=$db->select($query);
+  include '../config/config.php';
+  include '../config/Database.php';
+  $db= new Database();
+  $query="SELECT * FROM product";
+  $read=$db->select($query);
 ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -58,16 +58,16 @@
                 </thead>
                 <tbody>
 <?php
-      //    if($read) {
-        //    while($row=$read->fetch_assoc()) {
+          if($read) {
+            while($row=$read->fetch_assoc()) {
 ?>
 
                 <tr>
-                  <td>aa<?php // echo $row['name'];?></td>
-                  <td>aa<?php // echo $row['description'];?></td>
-                  <td>aa<?php // echo $row['status'];?></td>
-                  <td>sghjka</td>
-                  <td>sghjka</td>
+                  <td><?php  echo $row['p_name'];?></td>
+                  <td><?php  echo $row['product_code'];?></td>
+                  <td><?php  echo $row['quantity'];?></td>
+                  <td><?php  echo $row['avg_price'];?></td>
+                  <td><?php  echo $row['mrp'];?></td>
                   <td>
                     <a href="cat_view.php?id=<?php // echo $row['id']; ?>" style="color: white;"> 
                       <button  class="btn btn-info">
@@ -87,7 +87,7 @@
                    
                   </td>
                 </tr>
-<?php // } } ?>
+<?php  } } ?>
               </tbody>
               </table>
               </div>

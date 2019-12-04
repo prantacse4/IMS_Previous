@@ -129,7 +129,7 @@ include "../inc/header2.php";include '../inc/sidebar.php';
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal" action="" method="post">
+              <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
                 <div class="card-body">
 
                   <div class="form-group row">
