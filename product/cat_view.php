@@ -3,6 +3,7 @@
   $db= new Database();
 
 
+$db = new Database();
 $id = $_GET['id'];
 $query = "SELECT * FROM category WHERE cat_id = $id";
 $row = $db->select($query)->fetch_assoc();

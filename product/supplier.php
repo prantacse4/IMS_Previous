@@ -138,12 +138,10 @@
     </div>
   </section>
 
-
-                      </div>
-
-                     <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                </div>
+             <div class="modal-footer">
+           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
 
                </div>
                 </div> 
@@ -152,17 +150,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-             
 
                   <a href="supplier_edit.php?id=<?php echo $row['s_id']; ?>" style="color: white;"> 
                     <button class="btn btn-success">
