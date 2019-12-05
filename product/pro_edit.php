@@ -8,15 +8,15 @@
 
 
   //$id=$_GET['id'];
-$id='19';
+$id=$_GET['id'];
   
 if(isset($_POST['submit2']))
 {
-  $p_name=mysqli_real_escape_string($db->link, $_POST['p_name']);
+   $p_name=mysqli_real_escape_string($db->link, $_POST['p_name']);
   $description=mysqli_real_escape_string($db->link, $_POST['description']);
   $product_code=mysqli_real_escape_string($db->link, $_POST['product_code']);
   $quantity_type=mysqli_real_escape_string($db->link, $_POST['quantity_type']);
-  $cat_id= 'cat_id';
+  $cat_id= $_POST['cat_id'];
   $c_id=$_POST['c_id'];
   $quantity= $_POST['quantity'];
   $total_price= $_POST['total_price'];
@@ -27,6 +27,7 @@ if(isset($_POST['submit2']))
   $expire_date= $_POST['expire_date'];
   $location=mysqli_real_escape_string($db->link, $_POST['location']);
 
+
   $upload_dir = 'uploads/';
   $imgName = $_FILES['image']['name'];
   $imgTmp = $_FILES['image']['tmp_name'];
@@ -36,7 +37,6 @@ if(isset($_POST['submit2']))
   $imgExt = strtolower(pathinfo($imgName, PATHINFO_EXTENSION));
   $allowExt  = array('jpeg', 'jpg', 'png', 'gif');
   $userPic = time().'_'.rand(1000,9999).'.'.$imgExt;
-
   if(in_array($imgExt, $allowExt)){
 
         if($imgSize < 8000000){
@@ -53,7 +53,7 @@ if(isset($_POST['submit2']))
   else
   {
     //$p_id=$_GET['id'];
-    $query29="UPDATE INTO product
+    $query11="UPDATE product
     SET
         cat_id='$cat_id',
         c_id='$c_id',
@@ -70,20 +70,21 @@ if(isset($_POST['submit2']))
         expire_date='$expire_date',
         image='$userPic',
         location='$location'
-        WHERE p_id =$p_id";
-        $qq29 = $db->update($query29);
-    if($qq29){
+        WHERE p_id =$id ";
+        $result2 = $db->update($query11);
+    if($result2){
        echo "<script>window.location.href='product.php'</script>"; 
      }
      else{
       echo '$error';
+    //  echo "<script>window.location.href='supplier.php'</script>"; 
      }
   }
  // echo "<script>window.location.href='product.php'</script>"; 
 }
 
-$query44 = "SELECT * FROM product WHERE p_id = '$id'";
-$row=$db->select($query44)->fetch_assoc();
+$query499 = "SELECT * FROM product WHERE p_id = '$id'";
+$row=$db->select($query499)->fetch_assoc();
 
 
 
@@ -291,9 +292,6 @@ include "../inc/header2.php";
                       <input type="text" name="location" class="form-control"  placeholder="Location"  Required value="<?php echo $row['location']; ?>">
                     </div>
                   </div>
-
-
-
 
  
                   <div class="form-group row">

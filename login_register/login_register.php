@@ -13,7 +13,7 @@ if (isset($_POST['login'])) {
   $email = mysqli_real_escape_string($db->link, $_POST['email']);
   $password = mysqli_real_escape_string($db->link, $_POST['password']);
 
-    $query = "SELECT * FROM adminlogin WHERE email='$email' AND password='$password'";
+    $query = "SELECT * FROM adminlogin WHERE email = '" . $email . "' and password = '" . $password . "'";
     $result = mysqli_query($db->link,$query);
     $user_data = mysqli_fetch_array($result);
     $count_row = $result->num_rows;
@@ -21,6 +21,26 @@ if (isset($_POST['login'])) {
     if ($count_row == 1) {
       $_SESSION['email'] = $email;
       $_SESSION['success'] = "You are now logged in.";
+
+
+        if(!empty($_POST["remember"]))   
+         {  
+          setcookie ("member_login",$email,time()+ (10 * 365 * 24 * 60 * 60));  
+          setcookie ("member_password",$password,time()+ (10 * 365 * 24 * 60 * 60));
+         }  
+         else  
+         {  
+          if(isset($_COOKIE["member_login"]))   
+          {  
+           setcookie ("member_login","");  
+          }  
+          if(isset($_COOKIE["member_password"]))   
+          {  
+           setcookie ("member_password","");  
+          }  
+         } 
+
+
        echo "<script>window.location.href='../homepage/index.php'</script>";
     }else {
       $error="Email/Password is wrong!.";
@@ -60,7 +80,7 @@ if (isset($_POST['login'])) {
   <div class="card radius">
     <div class="card-body login-card-body lcbody radius">
       <div class="login-logo">
-    <a href=""><b>IMS</b> SYSTEM</a><br>
+    <a href=""><b>IMS</b></a><br>
     <img class="text-center imgradius" src="images/avatar.gif" >
   </div>
       <p class="login-box-msg">Sign in to start your session</p>
@@ -73,7 +93,7 @@ if (isset($_POST['login'])) {
 
       <form action="" method="post">
         <div class="input-group mb-3">
-          <input type="email" name="email" class="form-control" placeholder="Email" Required>
+          <input type="email" name="email" class="form-control" placeholder="Email" Required value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -81,7 +101,7 @@ if (isset($_POST['login'])) {
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password" placeholder="Password">
+          <input type="password" class="form-control" name="password" placeholder="Password" Required value="<?php if(isset($_COOKIE["member_password"])) { echo $_COOKIE["member_password"]; } ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -91,7 +111,7 @@ if (isset($_POST['login'])) {
        
           <div class="text-centert">
             <div class="icheck-primary">
-              <input type="checkbox" id="remember">
+              <input type="checkbox" name="remember" id="remember" <?php if(isset($_COOKIE["member_login"])) { ?> checked <?php } ?>>
               <label for="remember">
                 Remember Me
               </label>
@@ -140,7 +160,7 @@ if (isset($_POST['login'])) {
   <div class="card radius">
     <div class="card-body login-card-body lcbody radius">
       <div class="login-logo">
-    <a href="../../index2.html"><b>IMS</b> SYSTEM</a><br>
+    <a href="../../index2.html"><b>IMS</b></a><br>
     <img class="text-center imgradius" src="images/avatar.gif" >
   </div>
       <p class="login-box-msg">Register a new membership</p>

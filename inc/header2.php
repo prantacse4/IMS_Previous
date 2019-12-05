@@ -160,6 +160,7 @@
   </nav>
   <!-- /.navbar -->
   <!-- Main Sidebar Container -->
+  <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index.php" class="brand-link">
@@ -176,7 +177,7 @@
           <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Dipto Biswas</a>
+          <a href="../homepage/index.php" class="d-block">Dipto Biswas</a>
         </div>
       </div>
 
@@ -185,8 +186,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview menu-open active">
+            <a href="#" class="nav-link active" id="dashboard" >
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -204,7 +205,7 @@
           </li>
          
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" onclick="changeclass();" id="product">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Products
@@ -213,7 +214,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../product/category.php" class="nav-link">
+                <a href="../product/category.php" class="nav-link" onclick="changeclass();" id="productson">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Product Category</p>
                 </a>
@@ -223,7 +224,19 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>Product List</p>
                 </a>
-              </li>            
+              </li>  
+              <li class="nav-item">
+                <a href="../product/company.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Company</p>
+                </a>
+              </li>   
+              <li class="nav-item">
+                <a href="../product/supplier.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Supplier</p>
+                </a>
+              </li>          
             </ul>
           </li>
           <li class="nav-item has-treeview">
@@ -658,3 +671,13 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+
+
+  <script type="text/javascript">
+    
+    function changeclass() {
+      document.getElementById("product").className = "nav-link active";
+      document.getElementById("productson").className = "nav-link active active2";
+      document.getElementById("dashboard").className = "nav-link inactive"; 
+    }
+  </script>

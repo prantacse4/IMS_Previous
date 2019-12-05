@@ -1,6 +1,5 @@
 <?php
 	include '../inc/header2.php';
-	include '../inc/sidebar.php';
   include '../config/config.php';
   include '../config/Database.php';
 
@@ -8,19 +7,11 @@
   $query="SELECT * FROM product";
   $read=$db->select($query);
 
-
-
-
-
-
 $query2="SELECT * FROM category";
   $row2=$db->select($query2);
 
   $query3="SELECT * FROM company";
   $row3=$db->select($query3);
-
-
-
 
 
 ?>
@@ -46,18 +37,14 @@ $query2="SELECT * FROM category";
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
+<section class="content">
+ <div class="container-fluid">
 
         <!-- main body start from here -->
-
-
-
-
-	     <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Product Information</h3>
-                <a href="pro_create.php" class="abutton">Add Product</a>
+ <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Product Information</h3>
+         <a href="pro_create.php" class="abutton">Add Product</a>
             </div>
             <!-- /.card-header -->
             <div class="card-body" >
@@ -72,7 +59,7 @@ $query2="SELECT * FROM category";
                   <th>MRP</th>
                   <th>Action</th>
                 </tr>
-                </thead>
+                </thead>S
                 <tbody>
 <?php
        if($read) {
@@ -98,6 +85,7 @@ $query2="SELECT * FROM category";
 
 
            <?php $p_id =$row['p_id'];  ?>
+
       <button class="btn btn-info" data-toggle="modal" data-target="#myModal-<?php echo $p_id;  ?>">
             <span class="far fa-eye"></span>
        </button> 
@@ -123,7 +111,7 @@ $query2="SELECT * FROM category";
               <!-- /.card-header -->
               <!-- form start -->
               
-            <form role="form" class="form-horizontal" action="update.php" method="post" enctype="multipart/form-data">
+       
                 <div class="card-body">
                   <div class="form-group row">
            <label for="inputEmail3" class="col-sm-2 col-form-label">Product Name</label>
@@ -141,12 +129,12 @@ $query2="SELECT * FROM category";
 
 
                 
-                    <div class="form-group row">
-                      <label for="inputPassword3" class="col-sm-2 col-form-label">Category</label>
-                        <div class="col-sm-6">
-                         <p style="padding-top :8px;">: <?php echo $row['p_name']; ?></p>
-                      </div>
-                    </div>
+                                                    <div class="form-group row">
+                                                      <label for="inputPassword3" class="col-sm-2 col-form-label">Category</label>
+                                                        <div class="col-sm-6">
+                                                         <p style="padding-top :8px;">: <?php echo $row['p_name']; ?></p>
+                                                      </div>
+                                                    </div>
 
 
                             <div class="form-group row">
@@ -189,15 +177,26 @@ $query2="SELECT * FROM category";
   </section>
 
                </div>
+              
+
              <div class="modal-footer">
            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
 
-               </div>
-                </div> 
+           </div>
+         </div> 
 
-              </div>
+     </div>
 
+
+
+<?php///////////////////dheyudgewy?>
+
+                <a href="pro_edit.php?id=<?php echo $row['p_id']; ?>" style="color: white;"> 
+                    <button class="btn btn-success">
+                      <span class="fa fa-edit"></span>
+                    </button>
+                  </a>
 
 
 
@@ -218,6 +217,8 @@ $query2="SELECT * FROM category";
                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                    </div>
                  <div class="modal-body">
+
+
       <section class="content">
       <div class="container-fluid">
         <!-- main body start from here -->
@@ -229,7 +230,7 @@ $query2="SELECT * FROM category";
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+              <form class="form-horizontal" action="product.php" method="post" enctype="multipart/form-data">
                 <div class="card-body">
 
                   <div class="form-group row">
