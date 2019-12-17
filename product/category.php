@@ -2,9 +2,6 @@
   $page='';
   $page = 'product_category';
 	include 'header3.php';
-  include '../config/config.php';
-  include '../config/Database.php';
-  $db= new Database();
   $query="SELECT * FROM category";
   $read=$db->select($query);
 ?>

@@ -1,3 +1,19 @@
+<?php 
+session_start();
+if (!isset($_SESSION['email'])) {
+  echo "<script>window.location.href='../login_register/login_register.php'</script>";
+}
+include '../config/library.php';
+$db = new Database();
+$email="";
+if (isset( $_SESSION['email'])) {
+  $email =  $_SESSION['email'];
+}
+$querysession = "SELECT * FROM users WHERE user_email = '$email'";
+$rowsession = $db->select($querysession)->fetch_assoc();
+$namesession = $rowsession['user_fullname'];
+
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,7 +66,7 @@
         <a href="../homepage/index.php" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../dashboard/dashboard.php" class="nav-link">Dashboard</a>
+        <a href="../homepage/index.php" class="nav-link">Dashboard</a>
       </li>
     </ul>
 
@@ -71,14 +87,14 @@
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-user"></i> Pranta Biswas
+          <i class="far fa-user"></i> <?php echo $namesession; ?>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="text-center"><i class="far fa-user"></i></div>
-            <div class="text-center"><a href="profile.php" class="btn btn-info">Go to profile</a></div>
-              <div class="text-center"><a href="logout.php" class="btn btn-danger">Logout</a></div>
+            <div class="text-center"><a href="../profile/profile.php" class="btn btn-info">Go to profile</a></div>
+              <div class="text-center"><a href="../homepage/logout.php" class="btn btn-danger">Logout</a></div>
             <!-- Message End -->
           </a>
           <div class="dropdown-divider"></div>
@@ -149,7 +165,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview  ">
-            <a href="#" class="nav-link " id="dashboard" >
+            <a href="../homepage/index.php" class="nav-link " id="dashboard" >
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -231,8 +247,8 @@
 
           
 
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link"  id="product">
+                    <li class="nav-item has-treeview ">
+            <a href="../profile/profile.php" class="nav-link "  id="product">
               <i class="nav-icon fas fa-id-card-alt"></i>
               <p>
                 Profile
@@ -240,8 +256,8 @@
             </a>
           </li>
 
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link"  id="product">
+          <li class="nav-item has-treeview ">
+            <a href="../help/help.php" class="nav-link "  id="help">
               <i class="nav-icon fas fa-people-carry"></i>
               <p>
                 Help
@@ -249,35 +265,24 @@
             </a>
           </li>
 
-
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link"  id="product">
+ 
+          <li class="nav-item has-treeview ">
+            <a href="../terms_and_condition/terms_and_condition.php" class="nav-link "  id="terms">
               <i class="nav-icon  fas fa-info-circle"></i>
               <p>
-                Tems & Condition
+                Terms & Condition
               </p>
             </a>
           </li>
 
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link"  id="product">
+          <li class="nav-item has-treeview ">
+            <a href="../aboutus/aboutus.php" class="nav-link "  id="product">
               <i class="nav-icon fab fa-connectdevelop"></i>
               <p>
                 About Us
               </p>
             </a>
           </li>
-
-
-
-
-
-
-
-
-
-
-
 
 
 

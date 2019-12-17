@@ -2,10 +2,7 @@
 $page ='company';
   include 'header3.php';
 
-  include '../config/config.php';
-  include '../config/Database.php';
 
-$db = new Database();
 $id="";
 $id = $_GET['id'];
 

@@ -2,9 +2,6 @@
 $page='';
 $page = 'product_category';
 include 'header3.php';
-include '../config/library.php';
-
-$db = new Database();
 $id = $_GET['id'];
 
 if(isset($_POST['update']))

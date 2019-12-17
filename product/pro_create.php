@@ -2,9 +2,6 @@
 $page='';
   $page = 'product_list';
   include 'header3.php';
-  include '../config/config.php';
-  include '../config/Database.php';
-  $db= new Database();
   
 if(isset($_POST['submit2']))
 {

@@ -2,12 +2,6 @@
 <?php  
 $page = 'supplier';
   include 'header3.php';
-
-  include '../config/config.php';
-  include '../config/Database.php';
-
-  $db= new Database();
-
 if(isset($_POST['submit']))
 {
   $sup_name=mysqli_real_escape_string($db->link, $_POST['sup_name']);

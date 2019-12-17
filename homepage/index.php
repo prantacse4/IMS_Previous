@@ -1,15 +1,14 @@
 <?php
-session_start();
 include "../inc/header3.php";
-if (!isset($_SESSION['email'])) {
-  echo "<script>window.location.href='../login_register/login_register.php'</script>";
-}
+
+
+
 $e=0;
 $f="";
 if (isset( $_SESSION['email'])) {
   $email =  $_SESSION['email'];
   $f = $email;
-  $f='<div class="text-center"><a class="btn btn-danger" href="logout.php?logout="1" ">Logout</a></div> ';
+  $f='<div class="text-center"><a class="btn btn-danger" href="logout.php">Logout</a></div> ';
   $e=1;
 }
 

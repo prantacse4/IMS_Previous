@@ -2,11 +2,6 @@
 <?php  
 $page = 'supplier';
   include 'header3.php';
-
-  include '../config/config.php';
-  include '../config/Database.php';
-
-  $db= new Database();
   $query="SELECT * FROM supplier";
   $read=$db->select($query);
 

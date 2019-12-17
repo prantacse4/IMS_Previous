@@ -2,9 +2,6 @@
 $page='';
   $page = 'product_category';
   include 'header3.php';
-  include '../config/config.php';
-  include '../config/Database.php';
-  $db= new Database();
 if(isset($_POST['submit']))
 {
   $cat_name=mysqli_real_escape_string($db->link, $_POST['cat_name']);

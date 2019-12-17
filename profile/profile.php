@@ -1,13 +1,11 @@
 <?php 
-session_start();
 include 'header3.php';
-include '../config/library.php';
-$db = new Database();
+$email="";
 if (isset( $_SESSION['email'])) {
   $email =  $_SESSION['email'];
 }
 
-$query = "SELECT * FROM users WHERE user_email = $email";
+$query = "SELECT * FROM users WHERE user_email = '$email'";
 $row = $db->select($query)->fetch_assoc();
 $id = $row['user_id'];
 
@@ -17,15 +15,13 @@ if(isset($_POST['update']))
   $user_fullname = mysqli_real_escape_string($db->link, $_POST['user_fullname']);
   $username = mysqli_real_escape_string($db->link, $_POST['username']);
   $user_phone = mysqli_real_escape_string($db->link, $_POST['user_phone']);
-  $user_email = mysqli_real_escape_string($db->link, $_POST['user_email']);
-  $query = "UPDATE users
+  $query2 = "UPDATE users
   SET
     user_fullname='$user_fullname',
     username='$username',
-    user_phone='$user_phone',
-    user_email='$user_email'
-    WHERE user_id =$id";
-  $update = $db->update($query);
+    user_phone='$user_phone'
+    WHERE user_id ='$id' ";
+  $update = $db->update($query2);
   if($update){
        echo "<script>window.location.href='profile.php'</script>"; 
      }
@@ -33,13 +29,6 @@ if(isset($_POST['update']))
       echo '$error';
      }
 }
-
-
-
-
-
-
-
 
  ?>
 
@@ -111,7 +100,7 @@ if(isset($_POST['update']))
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Phone</label>
                     <div class="col-sm-6">
-                      <input type="text" name="userphone" class="form-control" value="<?php echo $row['username']; ?>"   Required>
+                      <input type="text" name="user_phone" class="form-control" value="<?php echo $row['user_phone']; ?>"   Required>
                     </div>
                   </div>
 
@@ -119,7 +108,7 @@ if(isset($_POST['update']))
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-6">
                       <input type="email" name="user_email" class="form-control" 
-                       value="<?php echo $row['user_email']; ?>"   Required>
+                       value="<?php echo $row['user_email']; ?>"   Required Readonly>
                     </div>
                   </div>
 
@@ -132,19 +121,9 @@ if(isset($_POST['update']))
                        <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
                       </div>
                      
-                    </div>
-
-                          
+                    </div>                   
                   </div>
 
-
-               
-
-
-
-
-
- 
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-4">

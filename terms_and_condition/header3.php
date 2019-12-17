@@ -14,12 +14,13 @@ $rowsession = $db->select($querysession)->fetch_assoc();
 $namesession = $rowsession['user_fullname'];
 
  ?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Profile</title>
+  <title>Terms and Conditions</title>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -91,7 +92,7 @@ $namesession = $rowsession['user_fullname'];
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="text-center"><i class="far fa-user"></i></div>
-            <div class="text-center"><a href="profile.php" class="btn btn-info">Go to profile</a></div>
+            <div class="text-center"><a href="../profile/profile.php" class="btn btn-info">Go to profile</a></div>
               <div class="text-center"><a href="../homepage/logout.php" class="btn btn-danger">Logout</a></div>
             <!-- Message End -->
           </a>
@@ -223,7 +224,7 @@ $namesession = $rowsession['user_fullname'];
 
           <!--   Purchase -->
           <li class="nav-item has-treeview">
-            <a href="../purchase/purchase.php" class="nav-link"  id="product">
+            <a href="../purchase/purchase.php" class="nav-link"  id="purchase">
               <i class="nav-icon fas fa-baby-carriage"></i>
               <p>
                 Purchase
@@ -234,7 +235,7 @@ $namesession = $rowsession['user_fullname'];
 
           <!--   Sale -->
           <li class="nav-item has-treeview">
-            <a href="../sale/sale.php" class="nav-link"  id="product">
+            <a href="../sale/sale.php" class="nav-link"  id="sale">
               <i class="nav-icon fas fa-shopping-cart"></i>
               <p>
                 Sale
@@ -245,8 +246,8 @@ $namesession = $rowsession['user_fullname'];
 
 
 
-          <li class="nav-item has-treeview active">
-            <a href="../profile/profile.php" class="nav-link active"  id="product">
+          <li class="nav-item has-treeview ">
+            <a href="../profile/profile.php" class="nav-link "  id="product">
               <i class="nav-icon fas fa-id-card-alt"></i>
               <p>
                 Profile
@@ -254,8 +255,8 @@ $namesession = $rowsession['user_fullname'];
             </a>
           </li>
 
-          <li class="nav-item has-treeview ">
-            <a href="../help/help.php" class="nav-link "  id="help">
+          <li class="nav-item has-treeview">
+            <a href="../help/help.php" class="nav-link"  id="help">
               <i class="nav-icon fas fa-people-carry"></i>
               <p>
                 Help
@@ -264,8 +265,8 @@ $namesession = $rowsession['user_fullname'];
           </li>
 
  
-          <li class="nav-item has-treeview ">
-            <a href="../terms_and_condition/terms_and_condition.php" class="nav-link "  id="terms">
+          <li class="nav-item has-treeview active">
+            <a href="../terms_and_condition/terms_and_condition.php" class="nav-link active"  id="terms">
               <i class="nav-icon  fas fa-info-circle"></i>
               <p>
                 Terms & Condition
@@ -273,15 +274,14 @@ $namesession = $rowsession['user_fullname'];
             </a>
           </li>
 
-          <li class="nav-item has-treeview ">
-            <a href="../aboutus/aboutus.php" class="nav-link "  id="product">
+          <li class="nav-item has-treeview">
+            <a href="../aboutus/aboutus.php" class="nav-link"  id="product">
               <i class="nav-icon fab fa-connectdevelop"></i>
               <p>
                 About Us
               </p>
             </a>
           </li>
-
 
 
           
