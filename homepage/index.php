@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../inc/header2.php";
+include "../inc/header3.php";
 if (!isset($_SESSION['email'])) {
   echo "<script>window.location.href='../login_register/login_register.php'</script>";
 }

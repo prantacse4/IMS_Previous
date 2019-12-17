@@ -10,7 +10,7 @@
 
 if (isset($_GET['id'])) {
    $id = $_GET['id'];
-   $query = "delete from company where c_id='$id'";
+   $query = "delete from company where com_id='$id'";
    $result = $db->delete($query);
     if($result){
        echo "<script>alert('Deleted successfully');</script>";

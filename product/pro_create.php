@@ -1,69 +1,37 @@
 <?php
-  //include '../inc/header.php';
- // include '../inc/sidebar.php';
+$page='';
+  $page = 'product_list';
+  include 'header3.php';
   include '../config/config.php';
   include '../config/Database.php';
   $db= new Database();
   
 if(isset($_POST['submit2']))
 {
-  $p_name=mysqli_real_escape_string($db->link, $_POST['p_name']);
-  $description=mysqli_real_escape_string($db->link, $_POST['description']);
-  $product_code=mysqli_real_escape_string($db->link, $_POST['product_code']);
-  $quantity_type=mysqli_real_escape_string($db->link, $_POST['quantity_type']);
-  $cat_id= $_POST['cat_id'];
-  $c_id=$_POST['c_id'];
-  $quantity= $_POST['quantity'];
-  $total_price= $_POST['total_price'];
-  $avg_price=$total_price/$quantity;
-  $mrp= $_POST['mrp'];
-  $wholesale_price= $_POST['wholesale_price'];
-  $mfg= $_POST['mfg'];
-  $expire_date= $_POST['expire_date'];
-  $location=mysqli_real_escape_string($db->link, $_POST['location']);
+  $pro_name=mysqli_real_escape_string($db->link, $_POST['pro_name']);
+  $pro_code=mysqli_real_escape_string($db->link, $_POST['pro_code']);
+  $cat_id= $_POST['pro_cat'];
+  $com_id=$_POST['pro_com'];
+  $pro_type=mysqli_real_escape_string($db->link, $_POST['pro_type']);
+  $pro_qty= $_POST['pro_qty'];
+  $pro_pprice= $_POST['pro_pprice'];
+  $pro_wholesale= $_POST['pro_wholesale'];
+  $pro_mrp= $_POST['pro_mrp'];
+  $pro_location=mysqli_real_escape_string($db->link, $_POST['pro_location']);
+  $pro_notes=mysqli_real_escape_string($db->link, $_POST['pro_notes']);
 
 
-  $upload_dir = 'uploads/';
-  $imgName = $_FILES['image']['name'];
-  $imgTmp = $_FILES['image']['tmp_name'];
-  $imgSize = $_FILES['image']['size'];
-
- //$imgExt = explode(".", strtolower($_FILES['image']['name']));
-  $imgExt = strtolower(pathinfo($imgName, PATHINFO_EXTENSION));
-  $allowExt  = array('jpeg', 'jpg', 'png', 'gif');
-  $userPic = time().'_'.rand(1000,9999).'.'.$imgExt;
-
-  if(in_array($imgExt, $allowExt)){
-
-        if($imgSize < 8000000){
-          move_uploaded_file($imgTmp ,$upload_dir.$userPic);
-        }else{
-          $errorMsg = 'Image too large';
-        }
-      }else{
-        $errorMsg = 'Please select a valid image';
-      }
-
- 
-  //move_uploaded_file($imgTmp ,$upload_dir.$userPic);
-
- /* $imgName = $_FILES['image']['name'];
-    $imgTmp = $_FILES['image']['tmp_name'];
-    $imgSize = $_FILES['image']['size'];
-    $imgExt = strtolower(pathinfo($imgName, PATHINFO_EXTENSION));
-      $allowExt  = array('jpeg', 'jpg', 'png', 'gif');
-      $userPic = time().'_'.rand(1000,9999).'.'.$imgExt;
-      move_uploaded_file($imgTmp ,$upload_dir.$userPic);*/
 
 
-  if ($quantity_type=='' || $cat_id=='' || $c_id=='') {
+
+  if ($pro_type=='' || $cat_id=='' || $com_id=='') {
     $error="Field must not be empty";
   }
   else
   {
-    $query="INSERT INTO product(cat_id, c_id, p_name,description,product_code,quantity_type,quantity,total_price,avg_price,mrp,wholesale_price,mfg,expire_date,image,location) 
+    $query="INSERT INTO product(pro_name,pro_code,pro_cat,pro_com,pro_type,pro_qty,pro_pprice,pro_wholesale,pro_mrp,pro_location,pro_notes) 
     VALUES
-    ('$cat_id', '$c_id', '$p_name','$description','$product_code','$quantity_type','$quantity','$total_price','$avg_price','$mrp','$wholesale_price','$mfg','$expire_date','$userPic','$location')";
+    ('$pro_name','$pro_code','$cat_id','$com_id','$pro_type','$pro_qty','$pro_pprice','$pro_wholesale','$pro_mrp','$pro_location','$pro_notes')";
     $insert=$db->insert($query);
     if($insert){
        echo "<script>window.location.href='product.php'</script>"; 
@@ -72,8 +40,8 @@ if(isset($_POST['submit2']))
       echo '$error';
      }
   }
- // echo "<script>window.location.href='product.php'</script>"; 
 }
+ // echo "<script>window.location.href='product.php'</script>"; 
 ?>
 
 
@@ -85,14 +53,6 @@ $query2="SELECT * FROM category";
   $row3=$db->select($query3);
 ?>
 
-
-
-
-
-
-<?php 
-include "../inc/header2.php";include '../inc/sidebar.php';
- ?>
 
 
 
@@ -123,7 +83,7 @@ include "../inc/header2.php";include '../inc/sidebar.php';
         <!-- main body start from here -->
 
         <!-- Horizontal Form -->
-            <div class="card card-info">
+            <div class="card card-info card2">
               <div class="card-header">
                 <h3 class="card-title">Product Information</h3>
               </div>
@@ -135,21 +95,21 @@ include "../inc/header2.php";include '../inc/sidebar.php';
                   <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Product Name</label>
                     <div class="col-sm-6">
-                      <input type="text" name="p_name" class="form-control"  placeholder="Enter Product Name" Required>
+                      <input type="text" name="pro_name" class="form-control"  placeholder="Enter Product Name" Required>
                     </div>
                   </div>
 
                   <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Description</label>
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Notes</label>
                     <div class="col-sm-6">
-                      <input type="text" name="description" class="form-control"  placeholder="Description about product" Required>
+                      <input type="text" name="pro_notes" class="form-control"  placeholder="Description about product" Required>
                     </div>
                   </div>
 
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Product Code</label>
                     <div class="col-sm-6">
-                      <input type="text" name="product_code" class="form-control"  placeholder="Product code" Required>
+                      <input type="text" name="pro_code" class="form-control"  placeholder="Product code" Required>
                     </div>
                   </div>
 
@@ -160,7 +120,7 @@ include "../inc/header2.php";include '../inc/sidebar.php';
                     
                     <div class="col-sm-6">
                        <div class="form-group">
-                  <select name="cat_id" class="browser-default custom-select selectmenu">
+                  <select name="pro_cat" class="browser-default custom-select selectmenu">
                       
                       <option value="" selected>Select Category</option>
 
@@ -168,7 +128,7 @@ include "../inc/header2.php";include '../inc/sidebar.php';
      if($row2) {
     while($row22=$row2->fetch_assoc()) {
 ?>
-                      <option value="<?php echo $row22['cat_id']; ?>"><?php echo $row22['name']; ?></option>
+                      <option value="<?php echo $row22['cat_id']; ?>"><?php echo $row22['cat_name']; ?></option>
                       <?php } } ?>
                       
                       </select>
@@ -184,13 +144,13 @@ include "../inc/header2.php";include '../inc/sidebar.php';
                     
                     <div class="col-sm-6">
                        <div class="form-group">
-                  <select name="c_id" class="browser-default custom-select selectmenu">
+                  <select name="pro_com" class="browser-default custom-select selectmenu">
                       <option value="" selected>Select Company</option>
                       <?php
      if($row3) {
     while($row32=$row3->fetch_assoc()) {
 ?>
-                      <option value="<?php echo $row32['c_id']; ?>"><?php echo $row32['name']; ?></option>
+                      <option value="<?php echo $row32['com_id']; ?>"><?php echo $row32['com_name']; ?></option>
                       <?php } } ?>
                       </select>
                 </div>
@@ -205,7 +165,7 @@ include "../inc/header2.php";include '../inc/sidebar.php';
                     
                     <div class="col-sm-6">
                        <div class="form-group">
-                  <select name="quantity_type" class="browser-default custom-select selectmenu">
+                  <select name="pro_type" class="browser-default custom-select selectmenu">
                       <option value="" selected>Select Quantity type</option>
                       <option value="kg">Kg</option>
                       <option value="piece">Piece</option>
@@ -222,58 +182,41 @@ include "../inc/header2.php";include '../inc/sidebar.php';
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Quantity</label>
                     <div class="col-sm-6">
-                      <input type="text" name="quantity" class="form-control"  placeholder="Quantity"  Required>
+                      <input type="number" name="pro_qty" class="form-control"  placeholder="Quantity"  Required>
                     </div>
                   </div>
 
                    <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Total Price</label>
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Purchasing Price</label>
                     <div class="col-sm-6">
-                      <input type="text" name="total_price" class="form-control"  placeholder="Total price"  Required>
+                      <input type="text" name="pro_pprice" class="form-control"  placeholder="Total price"  Required>
                     </div>
                   </div>
 
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">MRP Price</label>
                     <div class="col-sm-6">
-                      <input type="text" name="mrp" class="form-control"  placeholder="MRP price"  Required>
+                      <input type="text" name="pro_mrp" class="form-control"  placeholder="MRP price"  Required>
                     </div>
                   </div>
 
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Wholesale Price</label>
                     <div class="col-sm-6">
-                      <input type="text" name="wholesale_price" class="form-control"  placeholder="Wholesale price"  Required>
+                      <input type="text" name="pro_wholesale" class="form-control"  placeholder="Wholesale price"  Required>
                     </div>
                   </div>
 
-                  <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">MFG</label>
-                    <div class="col-sm-6">
-                      <input type="date" name="mfg" class="form-control"  placeholder="Total price"  Required>
-                    </div>
-                  </div>
 
                
 
-                  <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Expire Date</label>
-                    <div class="col-sm-6">
-                      <input type="date" name="expire_date" class="form-control"  placeholder="Expire date"  Required>
-                    </div>
-                  </div>
 
-                  <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Image</label>
-                    <div class="col-sm-6">
-                      <input type="file" name="image" class="form-control"  placeholder="Choose image" >
-                    </div>
-                  </div>
+
 
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Location</label>
                     <div class="col-sm-6">
-                      <input type="text" name="location" class="form-control"  placeholder="Location"  Required>
+                      <input type="text" name="pro_location" class="form-control"  placeholder="Location"  Required>
                     </div>
                   </div>
 
@@ -283,8 +226,9 @@ include "../inc/header2.php";include '../inc/sidebar.php';
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-4">
-                      <button type="submit" name="submit2" class="btn btn-success">Submit</button>
-                      <button type="reset" class="btn btn-danger">Cancel</button>
+                      <button type="submit" name="submit2" class="btn btn-success btn-2">Submit</button>
+                      <button type="reset" class="btn btn-danger btn-2">Reset</button>
+                      <a class="btn btn-info " href="product.php">Go Back</a>
                     </div>
                   </div>
                 </div>
@@ -298,8 +242,6 @@ include "../inc/header2.php";include '../inc/sidebar.php';
   </section>
 <!-- End Main content -->
 
-
 <?php
 include '../inc/footer.php';
-?>
-
+ ?>

@@ -1,22 +1,22 @@
 <?php
-//	include '../inc/header.php';
-	//include '../inc/sidebar.php';
+$page='';
+  $page = 'product_category';
+  include 'header3.php';
   include '../config/config.php';
   include '../config/Database.php';
   $db= new Database();
 if(isset($_POST['submit']))
 {
-  $cname=mysqli_real_escape_string($db->link, $_POST['cname']);
-  $description=mysqli_real_escape_string($db->link, $_POST['description']);
-  $status=mysqli_real_escape_string($db->link, $_POST['status']);
+  $cat_name=mysqli_real_escape_string($db->link, $_POST['cat_name']);
+  $cat_desc=mysqli_real_escape_string($db->link, $_POST['cat_desc']);
 
 
-  if ($cname=='' || $description=='' || $status=='') {
+  if ($cat_name=='' || $cat_desc=='') {
     $error="Field must not be empty";
   }
   else
   {
-    $query="INSERT INTO category(name, description, status) VALUES('$cname','$description', '$status')";
+    $query="INSERT INTO category(cat_name, cat_desc) VALUES('$cat_name','$cat_desc')";
     $insert=$db->insert($query);
     if($insert){
        echo "<script>window.location.href='category.php'</script>"; 
@@ -27,12 +27,6 @@ if(isset($_POST['submit']))
   }
 }
 ?>
-
-
-<?php 
-include "../inc/header2.php";
- ?>
-
 
 
   <!-- Content Wrapper. Contains page content -->
@@ -63,7 +57,7 @@ include "../inc/header2.php";
 
         <!-- Horizontal Form -->
             <div class="card card-info">
-              <div class="card-header">
+              <div class="card-header cd1">
                 <h3 class="card-title">Product Category Information</h3>
               </div>
               <!-- /.card-header -->
@@ -71,28 +65,24 @@ include "../inc/header2.php";
               <form class="form-horizontal" action="cat_create.php" method="post">
                 <div class="card-body">
                   <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Category Name</label>
+                    <label  class="col-sm-2 col-form-label">Category Name</label>
                     <div class="col-sm-6">
-                      <input type="text" name="cname" class="form-control" id="inputEmail3" placeholder="Enter Product Category Name">
+                      <input type="text" name="cat_name" class="form-control"  placeholder="Enter Product Category Name">
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Description</label>
+                    <label class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-6">
-                      <input type="text" name="description" class="form-control" id="inputPassword3" placeholder="Description about category">
+                      <input type="text" name="cat_desc" class="form-control" placeholder="Description about category">
                     </div>
                   </div>
+
                   <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Status</label>
-                    <div class="col-sm-6">
-                      <input type="number" name="status" class="form-control" id="inputPassword3" value="1">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label"></label>
+                    <label  class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-4">
-                      <button type="submit" name="submit" class="btn btn-success">Submit</button>
-                      <button type="reset" class="btn btn-danger">Cancel</button>
+                      <button type="submit" name="submit" class="btn btn-2 btn-success">Submit</button>
+                      <button type="reset" class="btn btn-2 btn-danger">Reset</button>
+                      <a class="btn btn-info btn-2" href="category.php">Go Back</a>
                     </div>
                   </div>
                 </div>

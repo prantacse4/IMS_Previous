@@ -1,41 +1,38 @@
-<?php 
-include '../inc/header2.php';
+
+<?php  
+$page = 'supplier';
+  include 'header3.php';
 
   include '../config/config.php';
   include '../config/Database.php';
 
-$db = new Database();
-$id="";
-$id = $_GET['id'];
-//echo "dsayddddddddddddddddddddgsaydd".$id.$_GET['id']."  test2  ";
-if (isset($_POST['update'])) {
-  $name = mysqli_real_escape_string($db->link, $_POST['name']);
-  $contact = mysqli_real_escape_string($db->link, $_POST['contact']);
-  $address = mysqli_real_escape_string($db->link, $_POST['address']);
-  $c_id = mysqli_real_escape_string($db->link, $_POST['company']);
-  $query = "UPDATE supplier
-  SET
-    name='$name',
-    contact = '$contact',
-    address = '$address',
-    c_id='$c_id'
-    WHERE s_id ='$id' ";
-  $update = $db->update($query);
+  $db= new Database();
 
-    echo "<script>alert('Record Updated successfully');</script>";
+if(isset($_POST['submit']))
+{
+  $sup_name=mysqli_real_escape_string($db->link, $_POST['sup_name']);
+  $sup_contact=mysqli_real_escape_string($db->link, $_POST['sup_contact']);
+  $sup_address=mysqli_real_escape_string($db->link, $_POST['sup_address']);
+  $com_id= $_POST['sup_com'];
+  //$c_id='2';
+  if ($sup_name=='' || $sup_contact=='' || $sup_address=='' || $com_id=='') {
+    $error="Field must not be empty";
+  }
+  else
+  {
+$query="INSERT INTO supplier(sup_name, sup_contact, sup_address,sup_com) VALUES('$sup_name','$sup_contact', '$sup_address','$com_id')";
+    $insert=$db->insert($query);
+    if($insert){
+       echo "<script>alert('Record Created successfully');</script>";
+// Code for redirection
     echo "<script>window.location.href='supplier.php'</script>"; 
-    
+    }
+
+     else{
+      echo '$error';
+     }
+  }
 }
- if(isset($_POST['cancel'])){
-  echo "<script>window.location.href='supplier.php'</script>"; 
- }
-$query2 = "SELECT * FROM supplier WHERE s_id = $id ";
-$row = $db->select($query2)->fetch_assoc();
-
-$c_id=$row['c_id'];
-$query3 = "SELECT * FROM company WHERE c_id = $c_id ";
-$row2 = $db->select($query3)->fetch_assoc();
-
 ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -45,13 +42,13 @@ $row2 = $db->select($query3)->fetch_assoc();
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Edit Company</h1>
+            <h1 class="m-0 text-dark">Add Supplier</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item "><a href="supplier.php">Supplier</a></li>
-              <li class="breadcrumb-item active">Edit Supplier</li>
+              <li class="breadcrumb-item active">Add Supplier</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -67,28 +64,30 @@ $row2 = $db->select($query3)->fetch_assoc();
         <!-- Horizontal Form -->
             <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Company Information</h3>
+                <h3 class="card-title">Supplier Information</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form class="form-horizontal" action="" method="post">
                 <div class="card-body">
                   <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Company Name</label>
+                    <label  class="col-sm-2 col-form-label">Supplier Name</label>
                     <div class="col-sm-6">
-                      <input type="text" name="name" class="form-control" id="inputEmail3" value="<?php echo $row['name']; ?>">
+                      <input type="text" name="sup_name" class="form-control"  placeholder="Enter Supplier Name">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Contact No.</label>
                     <div class="col-sm-6">
-                      <input type="text" name="contact" class="form-control" id="inputPassword3" value="<?php echo $row['contact']; ?>">
+                      <input type="text" name="sup_contact" class="form-control"  placeholder="Enter Contact Number">
                     </div>
                   </div>
+
+
                   <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Address</label>
+                    <label  class="col-sm-2 col-form-label">Address</label>
                     <div class="col-sm-6">
-                      <input type="text" name="address" class="form-control" id="inputPassword3"  value="<?php echo $row['address']; ?>">
+                      <input type="text" name="sup_address" class="form-control"  placeholder="Enter Address">
                     </div>
                   </div>
 
@@ -97,44 +96,34 @@ $row2 = $db->select($query3)->fetch_assoc();
 
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Company</label>
                     <div class="col-sm-6">
-                      
-
-
-                        <select class="browser-default custom-select" name="company">
+                      <select class="browser-default custom-select" name="sup_com" required>
+                        <option selected value="" >Select Company</option>
         <?php 
             $query4="SELECT * FROM company";
             $read4=$db->select($query4);
             if ($read4) {
           while ($row4=$read4->fetch_assoc()) {
-            if($row['c_id']==$row4['c_id']){
-              ?>
-               <option selected value="<?php echo $row4['c_id']; ?>"><?php echo $row4['name']; ?></option>
-               <?php
-            }
-            else{
+
                ?>
-                <option value="<?php echo $row4['c_id']; ?>"><?php echo $row4['name']; ?></option>
+
+                <option value="<?php echo $row4['com_id']; ?>"><?php echo $row4['com_name']; ?></option>
            <?php 
-         }
              }
            }
           ?>
                       </select>
-
-
-
-
-
                       
                     </div>
                   </div>
 
 
+
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-4">
-                      <button type="submit" name="update" class="btn btn-success">Update</button>
-                      <button type="submit" class="btn btn-danger" name="cancel">Cancel</button>
+                      <button type="submit" name="submit" class="btn btn-success">Submit</button>
+                      <button type="reset" class="btn btn-2 btn-danger">Reset</button>
+                      <a class="btn btn-info btn-2" href="supplier.php">Go Back</a>
                     </div>
                   </div>
                 </div>
@@ -143,13 +132,11 @@ $row2 = $db->select($query3)->fetch_assoc();
             </div>
             <!-- /.card -->
 
-	   
+     
     </div>
   </section>
 <!-- End Main content -->
 
-<?php  
-  
-
-	include '../inc/footer.php';
+<?php 
+  include '../inc/footer.php';
 ?>

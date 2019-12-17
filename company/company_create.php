@@ -1,8 +1,7 @@
 
 <?php  
-	include '../inc/header2.php';
-
-
+$page ='company';
+  include 'header3.php';
   include '../config/config.php';
   include '../config/Database.php';
 
@@ -10,15 +9,17 @@
 
 if(isset($_POST['submit']))
 {
-  $name=mysqli_real_escape_string($db->link, $_POST['name']);
-  $contact=mysqli_real_escape_string($db->link, $_POST['contact']);
-  $address=mysqli_real_escape_string($db->link, $_POST['address']);
-  if ($name=='' || $contact=='' || $address=='') {
+  $com_name=mysqli_real_escape_string($db->link, $_POST['com_name']);
+  $com_desc=mysqli_real_escape_string($db->link, $_POST['com_desc']);
+  $com_contact=mysqli_real_escape_string($db->link, $_POST['com_contact']);
+  $com_location=mysqli_real_escape_string($db->link, $_POST['com_location']);
+  $com_address=mysqli_real_escape_string($db->link, $_POST['com_address']);
+  if ($com_name=='' || $com_desc=='' || $com_contact==''|| $com_location=='' || $com_address=='') {
     $error="Field must not be empty";
   }
   else
   {
-    $query="INSERT INTO company(name, contact, address) VALUES('$name','$contact', '$address')";
+    $query="INSERT INTO company(com_name,com_desc,com_contact,com_location,com_address) VALUES('$com_name','$com_desc','$com_contact','$com_location', '$com_address')";
     $insert=$db->insert($query);
     if($insert){
        echo "<script>alert('Record Created successfully');</script>";
@@ -66,31 +67,55 @@ if(isset($_POST['submit']))
               <!-- form start -->
               <form class="form-horizontal" action="company_create.php" method="post">
                 <div class="card-body">
+
+
                   <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Company Name</label>
                     <div class="col-sm-6">
-                      <input type="text" name="name" class="form-control" id="inputEmail3" placeholder="Enter Company Name">
+                      <input type="text" name="com_name" class="form-control"  placeholder="Enter Company Name">
                     </div>
                   </div>
+
                   <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Contact No.</label>
+                    <label  class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-6">
-                      <input type="text" name="contact" class="form-control" id="inputPassword3" placeholder="Enter Contact Number">
+                      <input type="text" name="com_desc" class="form-control" placeholder="Enter Company Description">
                     </div>
                   </div>
+
                   <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Address</label>
+                    <label  class="col-sm-2 col-form-label">Contact</label>
                     <div class="col-sm-6">
-                      <input type="text" name="address" class="form-control" id="inputPassword3" placeholder="Enter Address">
+                      <input type="text" name="com_contact" class="form-control"  placeholder="Enter Contact Number">
                     </div>
                   </div>
+
+
+                  <div class="form-group row">
+                    <label  class="col-sm-2 col-form-label">Location</label>
+                    <div class="col-sm-6">
+                      <input type="text" name="com_location" class="form-control"  placeholder="Enter Location">
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group row">
+                    <label  class="col-sm-2 col-form-label">Address</label>
+                    <div class="col-sm-6">
+                      <input type="text" name="com_address" class="form-control"  placeholder="Enter Address">
+                    </div>
+                  </div>
+
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-4">
-                      <button type="submit" name="submit" class="btn btn-success">Submit</button>
-                      <button type="reset" class="btn btn-danger">Cancel</button>
+                      <button type="submit" name="submit" class="btn btn-2 btn-success">Submit</button>
+                      <button type="reset" class="btn btn-2 btn-danger">Reset</button>
+                      <a class="btn btn-info btn-2" href="company.php">Go Back</a>
                     </div>
                   </div>
+
                 </div>
                 <!-- /.card-body -->
               </form>

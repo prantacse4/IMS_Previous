@@ -13,7 +13,8 @@ if (isset($_POST['login'])) {
   $email = mysqli_real_escape_string($db->link, $_POST['email']);
   $password = mysqli_real_escape_string($db->link, $_POST['password']);
 
-    $query = "SELECT * FROM adminlogin WHERE email = '" . $email . "' and password = '" . $password . "'";
+    $query = "SELECT * FROM users WHERE user_email = '" . $email . "'
+     and user_password = '" . $password . "'";
     $result = mysqli_query($db->link,$query);
     $user_data = mysqli_fetch_array($result);
     $count_row = $result->num_rows;

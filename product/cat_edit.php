@@ -1,21 +1,20 @@
 <?php
+$page='';
+  $page = 'product_category';
+  include 'header3.php';
   include '../config/library.php';
-  $db= new Database();
-
 
 $db = new Database();
 $id = $_GET['id'];
 
 if(isset($_POST['update']))
 {
-  $name = mysqli_real_escape_string($db->link, $_POST['name']);
-  $description = mysqli_real_escape_string($db->link, $_POST['description']);
-  $status =  $_POST['status'];
+  $cat_name = mysqli_real_escape_string($db->link, $_POST['cat_name']);
+  $cat_desc = mysqli_real_escape_string($db->link, $_POST['cat_desc']);
   $query = "UPDATE category
   SET
-    name='$name',
-    description = '$description',
-    status = '$status'
+    cat_name='$cat_name',
+    cat_desc = '$cat_desc'
     WHERE cat_id =$id";
   $update = $db->update($query);
   if($update){
@@ -30,9 +29,6 @@ $query = "SELECT * FROM category WHERE cat_id = $id";
 $row = $db->select($query)->fetch_assoc();
 ?>
 
-<?php 
-include "../inc/header2.php";
- ?>
 
 
 
@@ -72,28 +68,24 @@ include "../inc/header2.php";
               <form class="form-horizontal" action="cat_edit.php?id=<?php echo $id; ?>" method="post">
                 <div class="card-body">
                   <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Category Name</label>
+                    <label  class="col-sm-2 col-form-label">Category Name</label>
                     <div class="col-sm-6">
-                      <input type="text" name="name" value="<?php echo $row['name'] ?>" class="form-control" id="inputEmail3" >
+                      <input type="text" name="cat_name" value="<?php echo $row['cat_name'] ?>" class="form-control"  >
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Description</label>
+                    <label  class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-6">
-                      <input type="text" value="<?php echo $row['description'] ?>" name="description" class="form-control" id="inputPassword3" >
+                      <input type="text" value="<?php echo $row['cat_desc'] ?>" name="cat_desc" class="form-control"  >
                     </div>
                   </div>
+
                   <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Status</label>
-                    <div class="col-sm-6">
-                      <input type="number" name="status" value="<?php echo $row['status'] ?>" class="form-control" id="inputPassword3" >
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label"></label>
+                    <label class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-4">
-                      <button type="submit" name="update" class="btn btn-success">Update</button>
-                      <button type="reset" class="btn btn-danger">Cancel</button>
+                      <button type="submit" name="update" class="btn btn-success btn-2">Update</button>
+                      <button type="reset" class="btn btn-danger btn-2">Reset</button>
+                      <a class="btn btn-info " href="category.php">Go Back</a>
                       
                     </div>
                   </div>

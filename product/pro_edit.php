@@ -1,6 +1,8 @@
 <?php
  
- 
+ $page='';
+  $page = 'product_list';
+  include 'header3.php';
   include '../config/config.php';
   include '../config/Database.php';
 
@@ -12,42 +14,21 @@ $id=$_GET['id'];
   
 if(isset($_POST['submit2']))
 {
-   $p_name=mysqli_real_escape_string($db->link, $_POST['p_name']);
-  $description=mysqli_real_escape_string($db->link, $_POST['description']);
-  $product_code=mysqli_real_escape_string($db->link, $_POST['product_code']);
-  $quantity_type=mysqli_real_escape_string($db->link, $_POST['quantity_type']);
-  $cat_id= $_POST['cat_id'];
-  $c_id=$_POST['c_id'];
-  $quantity= $_POST['quantity'];
-  $total_price= $_POST['total_price'];
-  $avg_price=$total_price/$quantity;
-  $mrp= $_POST['mrp'];
-  $wholesale_price= $_POST['wholesale_price'];
-  $mfg= $_POST['mfg'];
-  $expire_date= $_POST['expire_date'];
-  $location=mysqli_real_escape_string($db->link, $_POST['location']);
+  $pro_name=mysqli_real_escape_string($db->link, $_POST['pro_name']);
+  $pro_code=mysqli_real_escape_string($db->link, $_POST['pro_code']);
+  $cat_id= $_POST['pro_cat'];
+  $com_id=$_POST['pro_com'];
+  $pro_type=mysqli_real_escape_string($db->link, $_POST['pro_type']);
+  $pro_qty= $_POST['pro_qty'];
+  $pro_pprice= $_POST['pro_pprice'];
+  $pro_wholesale= $_POST['pro_wholesale'];
+  $pro_mrp= $_POST['pro_mrp'];
+  $pro_location=mysqli_real_escape_string($db->link, $_POST['pro_location']);
+  $pro_notes=mysqli_real_escape_string($db->link, $_POST['pro_notes']);
 
 
-  $upload_dir = 'uploads/';
-  $imgName = $_FILES['image']['name'];
-  $imgTmp = $_FILES['image']['tmp_name'];
-  $imgSize = $_FILES['image']['size'];
 
- //$imgExt = explode(".", strtolower($_FILES['image']['name']));
-  $imgExt = strtolower(pathinfo($imgName, PATHINFO_EXTENSION));
-  $allowExt  = array('jpeg', 'jpg', 'png', 'gif');
-  $userPic = time().'_'.rand(1000,9999).'.'.$imgExt;
-  if(in_array($imgExt, $allowExt)){
-
-        if($imgSize < 8000000){
-          move_uploaded_file($imgTmp ,$upload_dir.$userPic);
-        }else{
-          $errorMsg = 'Image too large';
-        }
-      }else{
-        $errorMsg = 'Please select a valid image';
-      }
-  if ($quantity_type=='' || $cat_id=='' || $c_id=='') {
+  if ($pro_type=='' || $cat_id=='' || $com_id=='') {
     $error="Field must not be empty";
   }
   else
@@ -55,22 +36,18 @@ if(isset($_POST['submit2']))
     //$p_id=$_GET['id'];
     $query11="UPDATE product
     SET
-        cat_id='$cat_id',
-        c_id='$c_id',
-        p_name='$p_name',
-        description='$description',
-        product_code='$product_code',
-        quantity_type='$quantity_type',
-        quantity='$quantity',
-        total_price='$total_price',
-        avg_price='$avg_price',
-        mrp='$mrp',
-        wholesale_price='$wholesale_price',
-        mfg='$mfg',
-        expire_date='$expire_date',
-        image='$userPic',
-        location='$location'
-        WHERE p_id =$id ";
+        pro_name='$pro_name',
+        pro_code='$pro_code',
+        pro_cat='$cat_id',
+        pro_com='$com_id',
+        pro_type='$pro_type',
+        pro_qty='$pro_qty',
+        pro_pprice='$pro_pprice',
+        pro_wholesale='$pro_wholesale',
+        pro_mrp='$pro_mrp',
+        pro_location='$pro_location',
+        pro_notes='$pro_notes'
+        WHERE pro_id =$id ";
         $result2 = $db->update($query11);
     if($result2){
        echo "<script>window.location.href='product.php'</script>"; 
@@ -82,8 +59,7 @@ if(isset($_POST['submit2']))
   }
  // echo "<script>window.location.href='product.php'</script>"; 
 }
-
-$query499 = "SELECT * FROM product WHERE p_id = '$id'";
+$query499 = "SELECT * FROM product WHERE pro_id = '$id'";
 $row=$db->select($query499)->fetch_assoc();
 
 
@@ -95,9 +71,7 @@ $query2="SELECT * FROM category";
   $row3=$db->select($query3);
 ?>
 
-<?php 
-include "../inc/header2.php";
- ?>
+
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -121,7 +95,7 @@ include "../inc/header2.php";
 
 
 <!-- Horizontal Form -->
-            <div class="card card-info">
+            <div class="card card-info card2">
               <div class="card-header">
                 <h3 class="card-title">Product Information</h3>
               </div>
@@ -130,26 +104,34 @@ include "../inc/header2.php";
               <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
                 <div class="card-body">
 
+
+
                   <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Product Name</label>
                     <div class="col-sm-6">
-                      <input type="text" name="p_name" class="form-control"  placeholder="Enter Product Name" Required value="<?php echo $row['p_name'] ?>">
+                      <input type="text" name="pro_name" class="form-control"  placeholder="Enter Product Name" Required  value="<?php echo $row['pro_name'] ?>">
                     </div>
                   </div>
 
                   <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Description</label>
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Notes</label>
                     <div class="col-sm-6">
-                      <input type="text" name="description" class="form-control"  placeholder="Description about product" Required value="<?php echo $row['description'] ?>">
+                      <input type="text" name="pro_notes" class="form-control"  placeholder="Description about product" Required value="<?php echo $row['pro_notes'] ?>">
                     </div>
                   </div>
 
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Product Code</label>
                     <div class="col-sm-6">
-                      <input type="text" name="product_code" class="form-control"  placeholder="Product code" Required value="<?php echo $row['product_code'] ?>">
+                      <input type="text" name="pro_code" class="form-control" value="<?php echo $row['pro_code'] ?>"  placeholder="Product code" Required>
                     </div>
                   </div>
+
+
+
+
+
+
 
 
 
@@ -158,7 +140,7 @@ include "../inc/header2.php";
                     
                     <div class="col-sm-6">
                        <div class="form-group">
-                  <select name="cat_id" class="browser-default custom-select selectmenu">
+                  <select name="pro_cat" class="browser-default custom-select selectmenu">
                       
                       
                       <?php
@@ -167,12 +149,12 @@ include "../inc/header2.php";
     while($row22=$row2->fetch_assoc()) {
       if($row22['cat_id']==$row['cat_id']){
         ?>
-        <option value="<?php echo $row22['cat_id']; ?>" selected><?php echo $row22['name']; ?></option>
+        <option value="<?php echo $row22['cat_id']; ?>" selected><?php echo $row22['cat_name']; ?></option>
         <?php
       }
       else{
 ?>
-                      <option value="<?php echo $row22['cat_id']; ?>"><?php echo $row22['name']; ?></option>
+                      <option value="<?php echo $row22['cat_id']; ?>"><?php echo $row22['cat_name']; ?></option>
                       <?php } } } ?>
                       
                       </select>
@@ -188,21 +170,21 @@ include "../inc/header2.php";
                     
                     <div class="col-sm-6">
                        <div class="form-group">
-                  <select name="c_id" class="browser-default custom-select selectmenu">
+                  <select name="pro_com" class="browser-default custom-select selectmenu">
                      
                       <?php
                       $query55="SELECT * FROM company";
                       $read55=$db->select($query55);
      if($read55) {
     while($row32=$read55->fetch_assoc()) {
-      if($row32['c_id']==$row['c_id']){
+      if($row32['com_id']==$row['com_id']){
         ?>
-        <option value="<?php echo $row32['c_id']; ?>" selected> <?php echo $row32['name']; ?></option>
+        <option value="<?php echo $row32['com_id']; ?>" selected> <?php echo $row32['com_name']; ?></option>
         <?php
       }
       else{
 ?>
-                      <option value="<?php echo $row32['c_id']; ?>"><?php echo $row32['name']; ?></option>
+                      <option value="<?php echo $row32['com_id']; ?>"><?php echo $row32['com_name']; ?></option>
                       <?php } } }?>
                       </select>
                 </div>
@@ -217,88 +199,92 @@ include "../inc/header2.php";
                     
                     <div class="col-sm-6">
                        <div class="form-group">
-                  <select name="quantity_type" class="browser-default custom-select selectmenu">
-                      <option value="" selected>Select Quantity type</option>
-                      <option value="kg">Kg</option>
-                      <option value="piece">Piece</option>
-                      <option value="unit">Unit</option>
+                  <select name="pro_type" class="browser-default custom-select selectmenu">
+                    <?php 
+                      if($row['pro_type']=="Kg"){
+                        ?>
+                      <option value="Kg" selected>Kg</option>
+                      <option value="Piece">Piece</option>
+                      <option value="Unit">Unit</option>
+
+                      <?php } ?>
+
+                       <?php 
+                       if($row['pro_type']=="Piece"){
+                        ?>
+                      <option value="Kg" >Kg</option>
+                      <option value="Piece" selected>Piece</option>
+                      <option value="Unit">Unit</option>
+
+                      <?php } ?>
+
+                      <?php 
+                       if($row['pro_type']=="Unit"){
+                        ?>
+                      <option value="Kg" >Kg</option>
+                      <option value="Piece" >Piece</option>
+                      <option value="Unit" selected>Unit</option>
+
+                      <?php } ?>
+
                       </select>
-                </div>
+                    </div>
                     </div>
                   </div>
 
-                 
 
 
 
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Quantity</label>
                     <div class="col-sm-6">
-                      <input type="text" name="quantity" class="form-control"  placeholder="Quantity"  Required value="<?php echo $row['quantity']; ?>">
+                      <input type="text" name="pro_qty" class="form-control" value="<?php echo $row['pro_qty']; ?>"  placeholder="Quantity"  Required>
                     </div>
                   </div>
 
                    <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Total Price</label>
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Purchasing Price</label>
                     <div class="col-sm-6">
-                      <input type="text" name="total_price" class="form-control"  placeholder="Total price"  Required value="<?php echo $row['total_price']; ?>">
+                      <input type="text" name="pro_pprice" class="form-control" value="<?php echo $row['pro_pprice']; ?>"  placeholder="Total price"  Required>
                     </div>
                   </div>
 
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">MRP Price</label>
                     <div class="col-sm-6">
-                      <input type="text" name="mrp" class="form-control"  placeholder="MRP price"  Required value="<?php echo $row['mrp']; ?>">
+                      <input type="text" value="<?php echo $row['pro_mrp']; ?>" name="pro_mrp" class="form-control"  placeholder="MRP price"  Required>
                     </div>
                   </div>
 
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Wholesale Price</label>
                     <div class="col-sm-6">
-                      <input type="text" name="wholesale_price" class="form-control"  placeholder="Wholesale price"  Required value="<?php echo $row['wholesale_price']; ?>">
+                      <input type="text" name="pro_wholesale" value="<?php echo $row['pro_wholesale']; ?>" class="form-control"  placeholder="Wholesale price"  Required>
                     </div>
                   </div>
 
-                  <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">MFG</label>
-                    <div class="col-sm-6">
-                      <input type="date" name="mfg" class="form-control"  placeholder="Total price"  Required value="<?php echo $row['mfg']; ?>">
-                    </div>
-                  </div>
 
                
 
-                  <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Expire Date</label>
-                    <div class="col-sm-6">
-                      <input type="date" name="expire_date" class="form-control"  placeholder="Expire date"  Required value="<?php echo $row['expire_date']; ?>">
-                    </div>
-                  </div>
 
-                  <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Image</label>
-                    
-
-                    <div class="col-sm-6">
-                        <img src="<?php $upload_dir = 'uploads/';echo $upload_dir.$row['image']; ?>" width="100">
-                        <input type="file" name="image" class="form-control"  placeholder="Choose image" >
-                      </div>
-                  </div>
 
 
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Location</label>
                     <div class="col-sm-6">
-                      <input type="text" name="location" class="form-control"  placeholder="Location"  Required value="<?php echo $row['location']; ?>">
+                      <input type="text" name="pro_location" class="form-control" value="<?php echo $row['pro_location']; ?>"  placeholder="Location"  Required>
                     </div>
                   </div>
+
+
 
  
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-4">
-                      <button type="submit" name="submit2" class="btn btn-success">Submit</button>
-                      <button type="reset" class="btn btn-danger">Cancel</button>
+                      <button type="submit" name="submit2" class="btn btn-success btn-2">Submit</button>
+                      <button type="reset" class="btn btn-danger btn-2">Cancel</button>
+                      <a class="btn btn-info " href="product.php">Go Back</a>
                     </div>
                   </div>
                 </div>

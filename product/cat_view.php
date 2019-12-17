@@ -1,9 +1,10 @@
 <?php
+$page='';
+  $page = 'product_category';
+  include 'header3.php';
   include '../config/library.php';
   $db= new Database();
 
-
-$db = new Database();
 $id = $_GET['id'];
 $query = "SELECT * FROM category WHERE cat_id = $id";
 $row = $db->select($query)->fetch_assoc();
@@ -12,10 +13,6 @@ if(isset($_POST['submit']))
   header("Location:category.php");
 }
 ?>
-
-<?php 
-include "../inc/header2.php";
- ?>
 
 
 
@@ -55,25 +52,20 @@ include "../inc/header2.php";
               <form class="form-horizontal" action="category.php" method="post">
                 <div class="card-body">
                   <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Category Name</label>
+                    <label  class="col-sm-2 col-form-label">Category Name</label>
                     <div class="col-sm-6">
-                      <input type="text" name="cname" value="<?php echo $row['name'] ?>" class="form-control" id="inputEmail3" Readonly placeholder="Enter Product Category Name">
+                      <input type="text" name="cat_name" value="<?php echo $row['cat_name'] ?>" class="form-control"  Readonly placeholder="Product Category Name">
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Description</label>
+                    <label class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-6">
-                      <input type="text" value="<?php echo $row['description'] ?>" name="description" class="form-control" id="inputPassword3" placeholder="Description about category" Readonly>
+                      <input type="text" value="<?php echo $row['cat_desc'] ?>" name="cat_desc" class="form-control"  placeholder="Description about category" Readonly>
                     </div>
                   </div>
+
                   <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Status</label>
-                    <div class="col-sm-6">
-                      <input type="number" name="status" value="<?php echo $row['status'] ?>" class="form-control" id="inputPassword3"  Readonly>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label"></label>
+                    <label  class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-4">
                       <button type="submit" name="submit" class="btn btn-success">OK</button>
                       

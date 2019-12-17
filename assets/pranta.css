@@ -1,0 +1,136 @@
+.card-info:not(.card-outline) .card-header {
+    background-color: 
+    #2d6cac;
+}
+.active:hover{
+	transition: .5s;
+}
+
+.tablepranta th{
+
+}
+.theadcolor{
+	background-color: 
+    #2d6cac;
+    color: white;
+}
+.theadcolor:hover{
+ background-color: 
+    #285f96;
+    transition: .8s;
+    box-shadow: 9px 12px 39px -30px rgba(0,0,0,0.75);
+}
+.tablepranta tr td{
+	padding: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+margin: 0px;
+padding-top: 7px;
+padding-bottom: 1px;
+padding-left: 15px;
+	
+}
+.tablepranta2 tr{
+
+}
+.table-striped tbody tr:nth-of-type(2n+1) {
+    background-color: rgba(0,0,0,0);
+}
+
+
+.table-striped tbody tr:nth-of-type(2n+1):hover{
+	background-color: rgba(0,0,0,.05);
+	transition: .8s;
+    box-shadow: 9px 12px 39px -30px rgba(0,0,0,0.75);
+}
+
+.even{
+	background-color: rgba(0,0,0,.05)
+}
+.even:hover{
+background-color: rgba(0,0,0,0);
+transition: .8s;
+box-shadow: 9px 12px 39px -30px rgba(0,0,0,0.75);
+}
+
+.card2 {
+    box-shadow: 0 0 1px 
+rgba(0,0,0,.125),0 1px 3px
+    rgba(0,0,0,.2);
+    margin-bottom: 1rem;
+    width: 97%;
+    margin-left: 15px;
+}
+.card-title2 {
+    float: left;
+    font-size: 23px;
+    font-weight: 400;
+    margin: 0;
+    padding-top: 5px;
+}
+.btn-add{
+    float: right;
+font-family: sans-serif;
+font-weight: bold;
+padding-left: 20px;
+padding-right: 20px;
+}
+.btn-2{
+    margin-right: 5px;
+}
+.card-header {
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 0 solid rgba(0,0,0,.125);
+    padding-left: 19px;
+    padding-right: 19px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+.text2{
+    font-size: 15px;
+    font-weight:147;
+    color: rgba(0,0,0,.15);
+   color: #717171 !important;
+    font-stretch: ultra-condensed;
+}
+.content-header h1 {
+    font-size: 22px;
+    margin: 0;
+}
+.content-header h1:hover {
+    font-size: 23px;
+    color: rgba(0,0,0,.20);
+    transition: 1s;
+    margin: 0;
+}
+.text2:hover{
+    color: rgba(0,0,0,.30);
+    transition: 1s;
+    }
+    .content-header {
+
+    padding-top: 9px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 7px;
+}
+.nav-pranta{
+    margin-left: 25px;
+    padding: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance:textfield;
+}

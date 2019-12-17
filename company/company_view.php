@@ -1,6 +1,6 @@
 <?php 
-include '../inc/header2.php';
-
+$page ='company';
+  include 'header3.php';
 
   include '../config/config.php';
   include '../config/Database.php';
@@ -8,28 +8,11 @@ include '../inc/header2.php';
 $db = new Database();
 $id="";
 $id = $_GET['id'];
-//echo "dsayddddddddddddddddddddgsaydd".$id.$_GET['id']."  test2  ";
-if (isset($_POST['update'])) {
-  $name = mysqli_real_escape_string($db->link, $_POST['name']);
-  $contact = mysqli_real_escape_string($db->link, $_POST['contact']);
-  $address = mysqli_real_escape_string($db->link, $_POST['address']);
-  $query = "UPDATE company
-  SET
-    name='$name',
-    contact = '$contact',
-    address = '$address'
-    WHERE c_id ='$id' ";
-  $update = $db->update($query);
 
-    echo "<script>alert('Record Updated successfully');</script>";
-    echo "<script>window.location.href='company.php'</script>"; 
-    
-}
-if(isset($_POST['cancel'])){
-  echo "<script>window.location.href='company.php'</script>"; 
-}
-$query2 = "SELECT * FROM company WHERE c_id = $id";
-$row = $db->select($query2)->fetch_assoc();
+$query2 = "SELECT * FROM company WHERE c_id = '$id'";
+//$row = $db->select($query2)->fetch_assoc();
+$res = $db->select($query2);
+$row = $res->fetch_assoc();
 ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -39,13 +22,13 @@ $row = $db->select($query2)->fetch_assoc();
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Edit Company</h1>
+            <h1 class="m-0 text-dark">View Company Details</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item "><a href="company.php">Company</a></li>
-              <li class="breadcrumb-item active">Edit Company</li>
+              <li class="breadcrumb-item active">View Company</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -65,32 +48,34 @@ $row = $db->select($query2)->fetch_assoc();
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal" action="" method="post">
+              <form class="form-horizontal" action="company.php" method="post">
                 <div class="card-body">
                   <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Company Name</label>
                     <div class="col-sm-6">
-                      <input type="text" name="name" class="form-control" id="inputEmail3" value="<?php echo $row['name']; ?>">
+                      
+                      <p style="padding-top :8px;">: <?php echo $row['name']; ?></p>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Contact No.</label>
                     <div class="col-sm-6">
-                      <input type="text" name="contact" class="form-control" id="inputPassword3" value="<?php echo $row['contact']; ?>">
+                      <p style="padding-top :8px;">: <?php echo $row['contact']; ?></p>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Address</label>
                     <div class="col-sm-6">
-                      <input type="text" name="address" class="form-control" id="inputPassword3"  value="<?php echo $row['address']; ?>">
+                      <p style="padding-top :8px;">: <?php echo $row['address']; ?></p>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label"></label>
+                    
                     <div class="col-sm-4">
-                      <button type="submit" name="update" class="btn btn-success">Update</button>
-                      <button type="submit" class="btn btn-danger" name="cancel">Cancel</button>
+                      <button type="submit" name="update" class="btn btn-success">Back</button>
                     </div>
+                
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -98,7 +83,7 @@ $row = $db->select($query2)->fetch_assoc();
             </div>
             <!-- /.card -->
 
-	   
+     
     </div>
   </section>
 <!-- End Main content -->
@@ -106,5 +91,5 @@ $row = $db->select($query2)->fetch_assoc();
 <?php  
   
 
-	include '../inc/footer.php';
+  include '../inc/footer.php';
 ?>
