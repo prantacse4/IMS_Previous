@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Supplier</title>
+  <title>Profile</title>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -140,7 +140,6 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
 
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -165,13 +164,13 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              <li class="nav-item " class="">
                 <a href="../product/category.php" class="nav-link nav-pranta"  >
                   &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-double-right nav-icon"></i>
                   <p>Product Category</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item ">
                 <a href="../product/product.php" class="nav-link nav-pranta">
                   &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-double-right nav-icon"></i>
                   <p>Product List</p>
@@ -185,7 +184,7 @@
 
         <!--   Company -->
           <li class="nav-item has-treeview">
-            <a href="../company/company.php" class="nav-link"  id="product">
+            <a href="../company/company.php" class="nav-link "  id="product">
               <i class="nav-icon fas fa-building"></i>
               <p>
                 Company
@@ -196,8 +195,8 @@
 
 
           <!--   Supplier -->
-          <li class="nav-item has-treeview <?php if($page=='supplier'){echo '-menuopen menu-open active';} ?>">
-            <a href="../supplier/supplier.php" class="nav-link <?php if($page=='supplier'){echo 'active';} ?>"  id="product">
+          <li class="nav-item has-treeview">
+            <a href="../supplier/supplier.php" class="nav-link"  id="product">
               <i class="nav-icon fas fa-shapes"></i>
               <p>
                 Supplier
@@ -214,7 +213,7 @@
                 Purchase
               </p>
             </a>
-          </li> 
+          </li>
 
 
           <!--   Sale -->
@@ -229,8 +228,9 @@
 
 
 
-           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link"  id="product">
+
+          <li class="nav-item has-treeview active">
+            <a href="#" class="nav-link active"  id="product">
               <i class="nav-icon fas fa-id-card-alt"></i>
               <p>
                 Profile
@@ -267,7 +267,7 @@
           </li>
 
 
-
+          
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -1,0 +1,18 @@
+.pro_image{
+	width: 96px;
+}
+.pro_image:hover{
+	width: 100px;
+	transition: 1s;
+}
+.row input{
+	border: 0px;
+}
+.row input:hover{
+	border: 2px solid grey;
+	transition: 1s;
+}
+.row input:focus{
+	border: 2px solid #17a2b8;
+	transition: 1s;
+}
